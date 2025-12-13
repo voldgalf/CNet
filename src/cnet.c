@@ -2,7 +2,7 @@
 // Created by brick on 12/10/2025.
 //
 
-#include "../include/globals.h"
+#include "../include/cnet.h"
 
 const char * CNet_getError(enum CNET_ERROR_CODES errorCode) {
     const char * message = "";

@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#include "include/globals.h"
+#include "include/cnet.h"
 
 int main(void) {
 
