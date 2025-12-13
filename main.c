@@ -49,17 +49,17 @@ int main(void) {
     CNet_socketDestroy(&myConnection);
     */
 
-    CNet_socket_object * clientSocket = NULL;
+    CNet_socket_object *clientSocket = NULL;
 
-    if(!CNet_socketInit(&clientSocket, CNET_SOCKET_CLIENT_TYPE)) {
+    if (!CNet_socketInit(&clientSocket, CNET_SOCKET_CLIENT_TYPE)) {
         printf("%s\n", CNet_getError(clientSocket->errorCode));
     }
 
-    if(!CNet_socketConnect(clientSocket, "127.0.0.1", "1234")) {
+    if (!CNet_socketConnect(clientSocket, "127.0.0.1", "1234")) {
         printf("%s\n", CNet_getError(clientSocket->errorCode));
     }
 
-    if(!CNet_socketSend(clientSocket, "Hello C")) {
+    if (!CNet_socketSend(clientSocket, "Hello C")) {
         printf("%s\n", CNet_getError(clientSocket->errorCode));
     }
 
