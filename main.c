@@ -5,7 +5,7 @@
 int main(void) {
 
     CNet_init();
-    /*
+
     CNet_socket_instance * myServer = NULL;
     if(!CNet_socketInit(&myServer, CNET_SOCKET_SERVER_TYPE)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
@@ -29,27 +29,23 @@ int main(void) {
 
     printf("Connection found!\n");
 
-    while(true) {
+    if (!CNet_socketRecv(myConnection, buffer)) {
+        printf("Error: %s\n", CNet_getError(myServer->errorCode));
+        break;
+    }
 
-        if (!CNet_socketRecv(myConnection, buffer)) {
-            printf("Error: %s\n", CNet_getError(myServer->errorCode));
-            break;
-        }
+    printf("Received: %s\n", buffer);
 
-        printf("Received: %s\n", buffer);
-
-        if(!CNet_socketSend(myConnection, buffer)) {
-            printf("Error: %s\n", CNet_getError(myServer->errorCode));
-            break;
-        }
+    if(!CNet_socketSend(myConnection, buffer)) {
+        printf("Error: %s\n", CNet_getError(myServer->errorCode));
+        break;
     }
     CNet_socketShutdown(myConnection);
     CNet_socketShutdown(myServer);
 
     CNet_socketDestroy(&myServer);
     CNet_socketDestroy(&myConnection);
-    */
-
+    /*
     CNet_socket_instance *clientSocket = NULL;
 
     if (!CNet_socketInit(&clientSocket, CNET_SOCKET_CLIENT_TYPE)) {
@@ -57,7 +53,7 @@ int main(void) {
     }
 
     CNet_server serverStructure;
-    serverStructure.addr = "127.0.0.1";
+    serverStructure.addr = "10.0.0.220";
     serverStructure.port = "1234";
     printf("Attempting to connect to %s:%s\n",serverStructure.addr, serverStructure.port);
 
@@ -72,7 +68,7 @@ int main(void) {
 
     CNet_socketShutdown(clientSocket);
     CNet_socketDestroy(&clientSocket);
-
+    */
     CNet_quit();
 
     return 0;

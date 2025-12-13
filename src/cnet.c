@@ -57,7 +57,7 @@ bool CNet_socketInit(CNet_socket_instance **socket, enum CNET_SOCKET_TYPES sockT
     return true;
 }
 
-#ifdef __WIN32
+#if defined(_WIN32)
 
 bool CNet_quit() {
     WSACleanup();
@@ -228,9 +228,8 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port) {
     }
     return true;
 }
-#endif
 
-#ifdef __linux__
+#elif defined(__linux__)
 
 bool CNet_quit() {
     return true;
@@ -251,6 +250,7 @@ bool CNet_socketSend(CNet_socket_instance *socket, char *buffer) {
     }
 
     int returnResult = 0;
+
     returnResult = send(socket->socket, buffer, (int) strlen(buffer), 0);
     if (returnResult == -1) {
         socket->errorCode = CNET_SOCKET_WRITE_ERROR;
