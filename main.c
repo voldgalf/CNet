@@ -31,14 +31,12 @@ int main(void) {
 
     if (!CNet_socketRecv(myConnection, buffer)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
-        break;
     }
 
     printf("Received: %s\n", buffer);
 
     if(!CNet_socketSend(myConnection, buffer)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
-        break;
     }
     CNet_socketShutdown(myConnection);
     CNet_socketShutdown(myServer);
