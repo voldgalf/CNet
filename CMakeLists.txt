@@ -3,7 +3,7 @@ project(CNet C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_executable(CNet main.c include/globals.h src/globals.c)
+add_executable(CNet main.c ${PROJECT_SOURCE_DIR}/include/globals.h ${PROJECT_SOURCE_DIR}/src/globals.c)
 
 if (WIN32)
     target_link_libraries(CNet PRIVATE ws2_32)
