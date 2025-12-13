@@ -96,6 +96,7 @@ bool CNet_init();
 * @retval false An error has occurred
 */
 bool CNet_socketInit(CNet_socket_object ** socket, enum CNET_SOCKET_TYPES sockType);
+
 /*!
 * \brief Destroys socket
 *
@@ -107,6 +108,7 @@ bool CNet_socketInit(CNet_socket_object ** socket, enum CNET_SOCKET_TYPES sockTy
 * @retval false An error has occurred
 */
 bool CNet_socketDestroy(CNet_socket_object ** socket);
+
 /*!
 * \brief Shuts down socket
 *
@@ -118,41 +120,45 @@ bool CNet_socketDestroy(CNet_socket_object ** socket);
 * @retval false An error has occurred
 */
 bool CNet_socketShutdown(CNet_socket_object * socket);
+
 /*!
 * \brief Checks if socket is still running
 *
 * Checks if socket is still running
 *
-* @param[in,out] socket an instance of `CNet_socket_object`
+* @param[in] socket an instance of `CNet_socket_object`
 *
 * @retval true `socket` is active
 * @retval false `socket` is inactive
 */
 bool CNet_socketActive(CNet_socket_object* socket);
+
 /*!
 * \brief Write to socket
 *
 * Writes to `socket` given `buffer`
 *
-* @param[in,out] socket an instance of `CNet_socket_object`
+* @param[in] socket an instance of `CNet_socket_object`
 * @param[in] buffer a char pointer
  *
 * @retval true Bytes from `buffer` are written to `socket`
 * @retval false An error has occurred
 */
 bool CNet_socketSend(CNet_socket_object* socket, char * buffer);
+
 /*!
 * \brief Read from socket
 *
 * Reads from socket given `socket` and writes bytes to `buffer`
 *
-* @param[in,out] socket an instance of `CNet_socket_object`
-* @param[in] buffer a char pointer
+* @param[in] socket an instance of `CNet_socket_object`
+* @param[in,out] buffer a char pointer
  *
 * @retval true Read bytes from `socket` are written to `buffer`
 * @retval false An error has occurred
 */
 bool CNet_socketRecv(CNet_socket_object* socket, char * buffer);
+
 /*!
 * \brief Connect to a specified server
 *
@@ -166,6 +172,7 @@ bool CNet_socketRecv(CNet_socket_object* socket, char * buffer);
 * @retval false An error has occurred
 */
 bool CNet_socketConnect(CNet_socket_object* socket, const char * address, const char * port);
+
 /*!
 * \brief Writes newly connected connection to socket
 *
@@ -178,6 +185,7 @@ bool CNet_socketConnect(CNet_socket_object* socket, const char * address, const 
 * @retval false An error has occurred
 */
 bool CNet_socketAccept(CNet_socket_object* serverSocket, CNet_socket_object* connectionSocket);
+
 /*!
 * \brief Hosts server given socket
 *

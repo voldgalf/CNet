@@ -68,7 +68,5 @@ int main(void) {
 
     CNet_quit();
 
-    CNet_quit();
-
     return 0;
 }
