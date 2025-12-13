@@ -6,12 +6,12 @@ int main(void) {
 
     CNet_init();
 
-    CNet_socket_object * myServer = NULL;
+    CNet_socket_instance * myServer = NULL;
     if(!CNet_socketInit(&myServer, CNET_SOCKET_SERVER_TYPE)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
     }
 
-    CNet_socket_object * myConnection = NULL;
+    CNet_socket_instance * myConnection = NULL;
     if(!CNet_socketInit(&myConnection, CNET_SOCKET_SERVER_CONNECTION_TYPE)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
     }
@@ -50,7 +50,7 @@ int main(void) {
     CNet_socketDestroy(&myConnection);
 
     /*
-    CNet_socket_object *clientSocket = NULL;
+    CNet_socket_instance *clientSocket = NULL;
 
     if (!CNet_socketInit(&clientSocket, CNET_SOCKET_CLIENT_TYPE)) {
         printf("Error: %s\n", CNet_getError(clientSocket->errorCode));

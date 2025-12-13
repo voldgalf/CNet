@@ -44,7 +44,7 @@ enum CNET_SOCKET_TYPES {
 };
 
 /*!
-* \struct CNet_socket_object
+* \struct CNet_socket_instance
 * \brief data structure used throughout this library
 *
 * Data structure used for the CNetet socket protocol
@@ -70,7 +70,7 @@ typedef struct {
     */
     enum CNET_ERROR_CODES errorCode;
 
-} CNet_socket_object;
+} CNet_socket_instance;
 
 const char *CNet_getError(enum CNET_ERROR_CODES errorCode);
 
@@ -79,12 +79,12 @@ const char *CNet_getError(enum CNET_ERROR_CODES errorCode);
 *
 * Destroys socket
 *
-* @param[in,out] socket an instance of `CNet_socket_object`
+* @param[in,out] socket an instance of `CNet_socket_instance`
 *
 * @retval true `socket` is destroyed correctly
 * @retval false An error has occurred
 */
-bool CNet_socketDestroy(CNet_socket_object **socket);
+bool CNet_socketDestroy(CNet_socket_instance **socket);
 
 /*!
 * \brief Quit CNet
@@ -113,91 +113,91 @@ bool CNet_init();
 *
 * Allocate and initialize `socket`
 *
-* @param[in,out] socket an instance of `CNet_socket_object`
+* @param[in,out] socket an instance of `CNet_socket_instance`
 * @param[in] sockType specified `CNet_socketTypes`
  *
 * @retval true socket is allocated and updated
 * @retval false An error has occurred
 */
-bool CNet_socketInit(CNet_socket_object **socket, enum CNET_SOCKET_TYPES sockType);
+bool CNet_socketInit(CNet_socket_instance **socket, enum CNET_SOCKET_TYPES sockType);
 
 /*!
 * \brief Shuts down socket
 *
 * Shuts down socket
 *
-* @param[in,out] socket an instance of `CNet_socket_object`
+* @param[in,out] socket an instance of `CNet_socket_instance`
 *
 * @retval true `socket` is shutdown correctly
 * @retval false An error has occurred
 */
-bool CNet_socketShutdown(CNet_socket_object *socket);
+bool CNet_socketShutdown(CNet_socket_instance *socket);
 
 /*!
 * \brief Write to socket
 *
 * Writes to `socket` given `buffer`
 *
-* @param[in] socket an instance of `CNet_socket_object`
+* @param[in] socket an instance of `CNet_socket_instance`
 * @param[in] buffer a char pointer
  *
 * @retval true Bytes from `buffer` are written to `socket`
 * @retval false An error has occurred
 */
-bool CNet_socketSend(CNet_socket_object *socket, char *buffer);
+bool CNet_socketSend(CNet_socket_instance *socket, char *buffer);
 
 /*!
 * \brief Read from socket
 *
 * Reads from socket given `socket` and writes bytes to `buffer`
 *
-* @param[in] socket an instance of `CNet_socket_object`
+* @param[in] socket an instance of `CNet_socket_instance`
 * @param[in,out] buffer a char pointer
  *
 * @retval true Read bytes from `socket` are written to `buffer`
 * @retval false An error has occurred
 */
-bool CNet_socketRecv(CNet_socket_object *socket, char *buffer);
+bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer);
 
 /*!
 * \brief Connect to a specified server
 *
 * Connect to server using `address` and `port` and writes that socket to `socket`
 *
-* @param[in,out] socket an instance of `CNet_socket_object`
+* @param[in,out] socket an instance of `CNet_socket_instance`
 * @param[in] address a char pointer
 * @param[in] port a char pointer
 *
 * @retval true `socket` is now connected to server
 * @retval false An error has occurred
 */
-bool CNet_socketConnect(CNet_socket_object *socket, const char *address, const char *port);
+bool CNet_socketConnect(CNet_socket_instance *socket, const char *address, const char *port);
 
 /*!
 * \brief Writes newly connected connection to socket
 *
 * Accepts new socket from `serverSocket` and writes it to `connectionSocket`
 *
-* @param[in,out] serverSocket an instance of `CNet_socket_object`
-* @param[in,out] connectionSocket an instance of `CNet_socket_object'
+* @param[in,out] serverSocket an instance of `CNet_socket_instance`
+* @param[in,out] connectionSocket an instance of `CNet_socket_instance'
  *
 * @retval true `connectionSocket` is now written with new connection from `serverSocket`
 * @retval false An error has occurred
 */
-bool CNet_socketAccept(CNet_socket_object *serverSocket, CNet_socket_object *connectionSocket);
+bool CNet_socketAccept(CNet_socket_instance *serverSocket, CNet_socket_instance *connectionSocket);
 
 /*!
 * \brief Hosts server given socket
 *
-* Given a `CNet_socket_object` instance and a port: hosts a server
+* Given a `CNet_socket_instance` instance and a port: hosts a server
 *
-* @param[in,out] socket an instance of `CNet_socket_object`
+* @param[in,out] socket an instance of `CNet_socket_instance`
 * @param[in] port a char pointer
  *
 * @retval true Server is now being hosted on `port` through `socket`
 * @retval false An error has occurred
 */
-bool CNet_socketHost(CNet_socket_object *serverSocket, const char *port);
+bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port);
 
 #ifdef __cplusplus
 }

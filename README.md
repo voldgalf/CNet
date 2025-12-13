@@ -10,13 +10,13 @@ A simple library for simple networking
 // Initialize CNet
 CNet_init();
 
-// Create empty pointer to CNet_socket_object
-CNet_socket_object * myServer = NULL;
+// Create empty pointer to CNet_socket_instance
+CNet_socket_instance * myServer = NULL;
 
 // Initialize 'myServer'
 CNet_socketInit(&myServer, SOCKET_TYPE_SERVER);
 
-CNet_socket_object * myConnection = NULL;
+CNet_socket_instance * myConnection = NULL;
 
 CNet_socketInit(&myConnection, SOCKET_TYPE_CLIENT);
 
