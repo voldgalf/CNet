@@ -1,8 +1,8 @@
 var indexSectionsWithContent =
 {
-  0: "cegis",
+  0: "ceis",
   1: "c",
-  2: "g",
+  2: "c",
   3: "c",
   4: "eis",
   5: "c",
