@@ -4,10 +4,6 @@
 
 #include "../include/globals.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 const char * CNet_get_error(enum CNet_errorCodes errorCode) {
     const char * message = "";
     switch (errorCode) {
@@ -102,20 +98,19 @@ const char * CNet_get_error(enum CNet_errorCodes errorCode) {
     }
 
     bool CNet_socketRecv(CNet_socket_object* socket, char * buffer) {
+        memset(buffer, 0, 512);
 
-    memset(buffer, 0, 512);
-
-    if (socket->socket == INVALID_SOCKET) {
-        return false;
-    }
-    int returnResult = 0;
-    returnResult = recv(socket->socket, buffer, 512, 0);
-    if (returnResult > 0) {
-        return true;
-    } else {
-        socket->errorCode = SOCKET_READ_ERROR;
-        return false;
-    }
+        if (socket->socket == INVALID_SOCKET) {
+            return false;
+        }
+        int returnResult = 0;
+        returnResult = recv(socket->socket, buffer, 512, 0);
+        if (returnResult > 0) {
+            return true;
+        } else {
+            socket->errorCode = SOCKET_READ_ERROR;
+            return false;
+        }
     }
 
     bool CNet_socketConnect(CNet_socket_object* clientSocket, char * address, char * port) {
@@ -155,72 +150,66 @@ const char * CNet_get_error(enum CNet_errorCodes errorCode) {
     }
 
     bool CNet_socketAccept(CNet_socket_object* serverSocket, CNet_socket_object* connectionSocket) {
+        if(!serverSocket || !connectionSocket) {
+            return false;
+        }
 
-    if(!serverSocket || !connectionSocket) {
-        return false;
-    }
+        int returnResult;
 
-    int returnResult;
+        returnResult = listen(serverSocket->socket, SOMAXCONN);
 
-    returnResult = listen(serverSocket->socket, SOMAXCONN);
+        if (returnResult == SOCKET_ERROR) {
+            serverSocket->errorCode = SERVER_LISTEN_ERROR;
+            closesocket(serverSocket->socket);
+            return false;
+        }
 
-    if (returnResult == SOCKET_ERROR) {
-        serverSocket->errorCode = SERVER_LISTEN_ERROR;
-        closesocket(serverSocket->socket);
-        return false;
-    }
+        connectionSocket->socket = accept(serverSocket->socket, NULL, NULL);
+        if (connectionSocket->socket == INVALID_SOCKET) {
+            serverSocket->errorCode = SERVER_ACCEPT_ERROR;
+            return false;
+        }
 
-    connectionSocket->socket = accept(serverSocket->socket, NULL, NULL);
-    if (connectionSocket->socket == INVALID_SOCKET) {
-        serverSocket->errorCode = SERVER_ACCEPT_ERROR;
-        return false;
-    }
-
-    return true;
+        return true;
     }
 
     bool CNet_socketHost(CNet_socket_object * serverSocket, char * port) {
+        if(!serverSocket) {
+            return false;
+        }
 
-    if(!serverSocket) {
-        return false;
+        int returnResult;
+
+        struct addrinfo *result = NULL;
+        struct addrinfo hints;
+
+        ZeroMemory(&hints, sizeof(hints));
+        hints.ai_family = AF_INET;
+        hints.ai_socktype = SOCK_STREAM;
+        hints.ai_protocol = IPPROTO_TCP;
+        hints.ai_flags = AI_PASSIVE;
+
+        returnResult = getaddrinfo(NULL, port, &hints, &result);
+        if (returnResult != 0) {
+
+            return false;
+        }
+
+        serverSocket->socket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
+        if (serverSocket->socket == INVALID_SOCKET) {
+            serverSocket->errorCode = SOCKET_CREATE_ERROR;
+            freeaddrinfo(result);
+            return false;
+        }
+
+        returnResult = bind(serverSocket->socket, result->ai_addr, (int) result->ai_addrlen);
+        if (returnResult == SOCKET_ERROR) {
+            serverSocket->errorCode = SERVER_BIND_ERROR;
+            freeaddrinfo(result);
+            return false;
+        }
+        return true;
     }
 
-    int returnResult;
 
-    struct addrinfo *result = NULL;
-    struct addrinfo hints;
-
-    ZeroMemory(&hints, sizeof(hints));
-    hints.ai_family = AF_INET;
-    hints.ai_socktype = SOCK_STREAM;
-    hints.ai_protocol = IPPROTO_TCP;
-    hints.ai_flags = AI_PASSIVE;
-
-    returnResult = getaddrinfo(NULL, port, &hints, &result);
-    if (returnResult != 0) {
-
-        return false;
-    }
-
-    serverSocket->socket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
-    if (serverSocket->socket == INVALID_SOCKET) {
-        serverSocket->errorCode = SOCKET_CREATE_ERROR;
-        freeaddrinfo(result);
-        return false;
-    }
-
-    returnResult = bind(serverSocket->socket, result->ai_addr, (int) result->ai_addrlen);
-    if (returnResult == SOCKET_ERROR) {
-        serverSocket->errorCode = SERVER_BIND_ERROR;
-        freeaddrinfo(result);
-        return false;
-    }
-    return true;
-    }
-
-
-#endif
-
-#ifdef __cplusplus
-}
 #endif
