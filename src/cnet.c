@@ -90,7 +90,7 @@ bool CNet_socketSend(CNet_socket_object *socket, char *buffer) {
 
 
     int returnResult = 0;
-    returnResult = send(socket->socket, buffer, strlen(buffer), 0);
+    returnResult = send(socket->socket, buffer, (int) strlen(buffer), 0);
     if (returnResult == SOCKET_ERROR) {
         socket->errorCode = CNET_SOCKET_WRITE_ERROR;
         return false;
