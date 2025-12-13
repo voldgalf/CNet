@@ -50,6 +50,13 @@ bool CNet_socketDestroy(CNet_socket_instance **socket) {
     }
 }
 
+bool CNet_socketInit(CNet_socket_instance **socket, enum CNET_SOCKET_TYPES sockType) {
+    *socket = malloc(sizeof(CNet_socket));
+    (*socket)->socketType = sockType;
+    (*socket)->socket = -1;
+    return true;
+}
+
 #ifdef __WIN32
 
 bool CNet_quit() {
@@ -65,13 +72,6 @@ bool CNet_init() {
         printf("WSAStartup failed with error: %d\n", returnResult);
         return false;
     }
-    return true;
-}
-
-bool CNet_socketInit(CNet_socket_instance **socket, enum CNET_SOCKET_TYPES sockType) {
-    *socket = malloc(sizeof(CNet_socket));
-    (*socket)->socketType = sockType;
-    (*socket)->socket = -1;
     return true;
 }
 
@@ -121,7 +121,7 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer) {
     }
 }
 
-bool CNet_socketConnect(CNet_socket_instance *clientSocket, const char *address, const char *port) {
+bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_server request) {
 
     if (clientSocket->socketType != CNET_SOCKET_CLIENT_TYPE) {
         clientSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
@@ -137,7 +137,7 @@ bool CNet_socketConnect(CNet_socket_instance *clientSocket, const char *address,
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_protocol = IPPROTO_TCP;
 
-    returnResult = getaddrinfo(address, port, &hints, &result);
+    returnResult = getaddrinfo(request.addr, request.port, &hints, &result);
     if (returnResult != 0) {
 
         return false;
@@ -228,6 +228,153 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port) {
     }
     return true;
 }
-
 #endif
 
+#ifdef __linux__
+
+bool CNet_quit() {
+    return true;
+}
+bool CNet_init() {
+    return true;
+}
+
+bool CNet_socketShutdown(CNet_socket_instance *socket) {
+    close(socket->socket);
+    return true;
+}
+
+bool CNet_socketSend(CNet_socket_instance *socket, char *buffer) {
+    if (socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
+        socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
+        return false;
+    }
+
+    int returnResult = 0;
+    returnResult = send(socket->socket, buffer, (int) strlen(buffer), 0);
+    if (returnResult == -1) {
+        socket->errorCode = CNET_SOCKET_WRITE_ERROR;
+        return false;
+    }
+
+    return true;
+}
+
+bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer) {
+
+    if (socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
+        socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
+        return false;
+    }
+
+    memset(buffer, 0, 512);
+
+    if (socket->socket == INVALID_SOCKET) {
+        return false;
+    }
+
+    int returnResult = 0;
+
+    returnResult = recv(socket->socket, buffer, 512, 0);
+    if (returnResult > 0) {
+        return true;
+    } else {
+        socket->errorCode = CNET_SOCKET_READ_ERROR;
+        return false;
+    }
+}
+
+bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_server request) {
+
+    if (clientSocket->socketType != CNET_SOCKET_CLIENT_TYPE) {
+        clientSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
+        return false;
+    }
+
+    struct sockaddr_in serv_addr;
+    struct hostent *server;
+
+    clientSocket->socket = socket(AF_INET, SOCK_STREAM, 0);
+    if (clientSocket->socket == NULL) {
+        clientSocket->errorCode = CNET_SOCKET_CREATION_ERROR;
+        return false;
+    }
+
+    bzero((char *) &serv_addr, sizeof(serv_addr));
+    serv_addr.sin_family = AF_INET;
+    bcopy((char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
+    serv_addr.sin_port = htons(atoi(request.port));
+
+    int returnResult = 0;
+
+    returnResult = connect(clientSocket->socket, (struct sockaddr *) &serv_addr, sizeof(serv_addr));
+    if (returnResult < 0) {
+        clientSocket->errorCode = CNET_SOCKET_CONNECT_ERROR;
+
+        return false;
+    }
+
+    return true;
+}
+
+bool CNet_socketAccept(CNet_socket_instance *serverSocket, CNet_socket_instance *connectionSocket) {
+    socklen_t clilen;
+    struct sockaddr_in cli_addr;
+
+    if (serverSocket->socketType != CNET_SOCKET_SERVER_TYPE) {
+        serverSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
+        return false;
+    }
+
+    int returnResult;
+
+    listen(serverSocket->socket, 5);
+    clilen = sizeof(cli_addr);
+
+    if (returnResult == SOCKET_ERROR) {
+        serverSocket->errorCode = CNET_SOCKET_LISTEN_ERROR;
+        return false;
+    }
+
+    connectionSocket->socket = accept(serverSocket->socket, (struct sockaddr *) &cli_addr, &clilen);
+
+    if (connectionSocket->socket < 0) {
+        serverSocket->errorCode = CNET_SOCKET_ACCEPT_ERROR;
+        return false;
+    }
+
+    return true;
+}
+
+bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port) {
+
+    if (serverSocket->socketType != CNET_SOCKET_SERVER_TYPE) {
+        serverSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
+        return false;
+    }
+
+    struct sockaddr_in serv_addr;
+
+    int returnResult;
+
+    serverSocket->socket = socket(AF_INET, SOCK_STREAM, 0);
+    if (serverSocket->socket < 0) {
+        serverSocket->errorCode = CNET_SOCKET_CREATION_ERROR;
+        return false;
+    }
+
+    bzero((char *) &serv_addr, sizeof(serv_addr));
+
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_addr.s_addr = INADDR_ANY;
+
+    serv_addr.sin_port = htons(atoi(port));
+
+    returnResult = bind(serverSocket->socket, (struct sockaddr *) &serv_addr, sizeof(serv_addr));
+    if (returnResult < 0) {
+        serverSocket->errorCode = CNET_SOCKET_BIND_ERROR;
+        return false;
+    }
+    return true;
+}
+#endif

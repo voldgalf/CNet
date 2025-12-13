@@ -1,32 +1,4 @@
 var searchData=
 [
-  ['cnet_2eh_0',['cnet.h',['../cnet_8h.html',1,'']]],
-  ['cnet_5ferror_5fcodes_1',['CNET_ERROR_CODES',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552',1,'cnet.h']]],
-  ['cnet_5fgeterror_2',['CNet_getError',['../cnet_8h.html#a95a69fa796613c1b4a224e87f8832029',1,'cnet.h']]],
-  ['cnet_5finit_3',['CNet_init',['../cnet_8h.html#a01feebeeec4eaf1793e3b1ac021bc94b',1,'cnet.h']]],
-  ['cnet_5fquit_4',['CNet_quit',['../cnet_8h.html#ab9297bf7e174b10a4f68eb4121e6f744',1,'cnet.h']]],
-  ['cnet_5fsocket_5',['CNet_socket',['../cnet_8h.html#ae371c5587bd47c0a07f82b476c9f10af',1,'cnet.h']]],
-  ['cnet_5fsocket_5faccept_5ferror_6',['CNET_SOCKET_ACCEPT_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a5e0815685131f87fb69c36780dde17e2',1,'cnet.h']]],
-  ['cnet_5fsocket_5fallocate_5ferror_7',['CNET_SOCKET_ALLOCATE_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552ad9f2406356d10137084cca48b8cb952c',1,'cnet.h']]],
-  ['cnet_5fsocket_5fbind_5ferror_8',['CNET_SOCKET_BIND_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a5c549f885d4e01f944986198b219b518',1,'cnet.h']]],
-  ['cnet_5fsocket_5fclient_5ftype_9',['CNET_SOCKET_CLIENT_TYPE',['../cnet_8h.html#a9d5545e8bbddede9bcb00b08829a73efae340d374397c47f0ecb8bb85b9f91474',1,'cnet.h']]],
-  ['cnet_5fsocket_5fconnect_5ferror_10',['CNET_SOCKET_CONNECT_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552ac61d44a9bbc4b8367d4b33e3e406a45f',1,'cnet.h']]],
-  ['cnet_5fsocket_5fcreation_5ferror_11',['CNET_SOCKET_CREATION_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a2d21e21d3e69568b841ff0b785a40d5f',1,'cnet.h']]],
-  ['cnet_5fsocket_5fincorrect_5ftype_5ferror_12',['CNET_SOCKET_INCORRECT_TYPE_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a1c72719dc74bf996b7706728606e4117',1,'cnet.h']]],
-  ['cnet_5fsocket_5finit_5ferror_13',['CNET_SOCKET_INIT_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a2c1a3de3d6ae25a79bed55bd17829dbf',1,'cnet.h']]],
-  ['cnet_5fsocket_5finstance_14',['CNet_socket_instance',['../struct_c_net__socket__instance.html',1,'']]],
-  ['cnet_5fsocket_5flisten_5ferror_15',['CNET_SOCKET_LISTEN_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552aa476f86acbb6557815bce08148dbc807',1,'cnet.h']]],
-  ['cnet_5fsocket_5fread_5ferror_16',['CNET_SOCKET_READ_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a475884da6eab4835d57c81d7ef30dfea',1,'cnet.h']]],
-  ['cnet_5fsocket_5fserver_5fconnection_5ftype_17',['CNET_SOCKET_SERVER_CONNECTION_TYPE',['../cnet_8h.html#a9d5545e8bbddede9bcb00b08829a73efa6bff570db43acdf0566189ab3cbe7ba3',1,'cnet.h']]],
-  ['cnet_5fsocket_5fserver_5ftype_18',['CNET_SOCKET_SERVER_TYPE',['../cnet_8h.html#a9d5545e8bbddede9bcb00b08829a73efa67c29cca0a15d2381dd6fc2aadf894fe',1,'cnet.h']]],
-  ['cnet_5fsocket_5ftypes_19',['CNET_SOCKET_TYPES',['../cnet_8h.html#a9d5545e8bbddede9bcb00b08829a73ef',1,'cnet.h']]],
-  ['cnet_5fsocket_5fwrite_5ferror_20',['CNET_SOCKET_WRITE_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a576a4d4b395e401204e2aee4e3b66c0b',1,'cnet.h']]],
-  ['cnet_5fsocketaccept_21',['CNet_socketAccept',['../cnet_8h.html#abe2a8ac4eb21104965ee04cf820a2a42',1,'cnet.h']]],
-  ['cnet_5fsocketconnect_22',['CNet_socketConnect',['../cnet_8h.html#a2d2b879a7db5964f37204fa924570f3c',1,'cnet.h']]],
-  ['cnet_5fsocketdestroy_23',['CNet_socketDestroy',['../cnet_8h.html#a9f7d32d1b3d9be0d788dd5e7b4874926',1,'cnet.h']]],
-  ['cnet_5fsockethost_24',['CNet_socketHost',['../cnet_8h.html#a27a5c6a8655caa267c23492b9877f3bc',1,'cnet.h']]],
-  ['cnet_5fsocketinit_25',['CNet_socketInit',['../cnet_8h.html#ab7694668ce743250940f9992ffa5c70f',1,'cnet.h']]],
-  ['cnet_5fsocketrecv_26',['CNet_socketRecv',['../cnet_8h.html#acf22393aacfe226244926502c9ed77c6',1,'cnet.h']]],
-  ['cnet_5fsocketsend_27',['CNet_socketSend',['../cnet_8h.html#a98d9a99ff01439fba05e6cb3ded5f239',1,'cnet.h']]],
-  ['cnet_5fsocketshutdown_28',['CNet_socketShutdown',['../cnet_8h.html#aaa79d1b8cd99c6e53e45c355e8b1bdf0',1,'cnet.h']]]
+  ['addr_0',['addr',['../struct_c_net__server.html#ab30d3cb197803c9ef4a809c9473ece14',1,'CNet_server']]]
 ];

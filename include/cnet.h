@@ -18,6 +18,11 @@ extern "C" {
 #include <windows.h>
 #include <ws2tcpip.h>
 
+#elif __linux__
+    #include <unistd.h>
+    #include <sys/socket.h>
+    #include <sys/un.h>
+    #include <sys/types.h>
 #endif
 
 typedef unsigned long long CNet_socket;
@@ -71,6 +76,11 @@ typedef struct {
     enum CNET_ERROR_CODES errorCode;
 
 } CNet_socket_instance;
+
+typedef struct {
+    const char * addr;
+    const char * port;
+} CNet_server;
 
 const char *CNet_getError(enum CNET_ERROR_CODES errorCode);
 
@@ -165,13 +175,12 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer);
 * Connect to server using `address` and `port` and writes that socket to `socket`
 *
 * @param[in,out] socket an instance of `CNet_socket_instance`
-* @param[in] address a char pointer
-* @param[in] port a char pointer
+* @param[in] request an instance of `CNet_server`
 *
 * @retval true `socket` is now connected to server
 * @retval false An error has occurred
 */
-bool CNet_socketConnect(CNet_socket_instance *socket, const char *address, const char *port);
+bool CNet_socketConnect(CNet_socket_instance *socket, CNet_server request);
 
 /*!
 * \brief Writes newly connected connection to socket

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['errorcode_0',['errorCode',['../struct_c_net__socket__instance.html#ac2bc440c5a86ca0b1ea0702c010f2b70',1,'CNet_socket_instance']]]
+  ['addr_0',['addr',['../struct_c_net__server.html#ab30d3cb197803c9ef4a809c9473ece14',1,'CNet_server']]]
 ];

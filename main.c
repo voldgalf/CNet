@@ -5,7 +5,7 @@
 int main(void) {
 
     CNet_init();
-
+    /*
     CNet_socket_instance * myServer = NULL;
     if(!CNet_socketInit(&myServer, CNET_SOCKET_SERVER_TYPE)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
@@ -48,15 +48,19 @@ int main(void) {
 
     CNet_socketDestroy(&myServer);
     CNet_socketDestroy(&myConnection);
+    */
 
-    /*
     CNet_socket_instance *clientSocket = NULL;
 
     if (!CNet_socketInit(&clientSocket, CNET_SOCKET_CLIENT_TYPE)) {
         printf("Error: %s\n", CNet_getError(clientSocket->errorCode));
     }
 
-    if (!CNet_socketConnect(clientSocket, "127.0.0.1", "1234")) {
+    CNet_server serverStructure;
+    serverStructure.addr = "127.0.0.1";
+    serverStructure.port = "1234";
+
+    if (!CNet_socketConnect(clientSocket, serverStructure)) {
         printf("Error: %s\n", CNet_getError(clientSocket->errorCode));
     }
 
@@ -66,7 +70,7 @@ int main(void) {
 
     CNet_socketShutdown(clientSocket);
     CNet_socketDestroy(&clientSocket);
-    */
+
     CNet_quit();
 
     return 0;
