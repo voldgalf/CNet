@@ -146,22 +146,22 @@ return message;
     return true;
 }
 
-    bool CN_socketAccept(CN_socket_object* socket, CN_socket_object* connectionSocket) {
+    bool CN_socketAccept(CN_socket_object* serverSocket, CN_socket_object* connectionSocket) {
 
-    if(!socket || !connectionSocket) {
+    if(!serverSocket || !connectionSocket) {
         return false;
     }
 
     int returnResult;
 
-    returnResult = listen(socket->currentSocket, SOMAXCONN);
+    returnResult = listen(serverSocket->currentSocket, SOMAXCONN);
 
     if (returnResult == SOCKET_ERROR) {
-        closesocket(socket->currentSocket);
+        closesocket(serverSocket->currentSocket);
         return false;
     }
 
-    connectionSocket->currentSocket = accept(socket->currentSocket, NULL, NULL);
+    connectionSocket->currentSocket = accept(serverSocket->currentSocket, NULL, NULL);
     if (connectionSocket->currentSocket == INVALID_SOCKET) {
         return false;
     }

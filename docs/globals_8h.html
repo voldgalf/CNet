@@ -112,7 +112,6 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="#a2ef8c26e904f3db1c7c69221c7f795fba3707c0f405cae0f5beebb548f3ac0f2f">INCORRECT_SOCKET_TYPE</a>
 <br />
  }</td></tr>
-<tr class="memdesc:a2ef8c26e904f3db1c7c69221c7f795fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error code list.  <a href="#a2ef8c26e904f3db1c7c69221c7f795fb">More...</a><br /></td></tr>
 <tr class="separator:a2ef8c26e904f3db1c7c69221c7f795fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a71a7654993f7fb5f81df551cf64aad" id="r_a4a71a7654993f7fb5f81df551cf64aad"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a71a7654993f7fb5f81df551cf64aad">CN_socketTypes</a> { <a class="el" href="#a4a71a7654993f7fb5f81df551cf64aada980b0a4b1891bd195ab10d7376d64f3e">SOCKET_TYPE_UNINIT</a>
 , <a class="el" href="#a4a71a7654993f7fb5f81df551cf64aadaef3d1a909e404be27afe030f0aedfd96">SOCKET_TYPE_SERVER</a>
@@ -124,38 +123,38 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ab7779e380871afb16d71bd72586cdd9a" id="r_ab7779e380871afb16d71bd72586cdd9a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7779e380871afb16d71bd72586cdd9a">CN_get_error</a> (enum <a class="el" href="#a2ef8c26e904f3db1c7c69221c7f795fb">CN_errorCodes</a> errorCode)</td></tr>
-<tr class="memdesc:ab7779e380871afb16d71bd72586cdd9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return string literal given <code>errorCode</code>  <br /></td></tr>
 <tr class="separator:ab7779e380871afb16d71bd72586cdd9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a004bdec347bc8a1e23cdec6d5feb683c" id="r_a004bdec347bc8a1e23cdec6d5feb683c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a004bdec347bc8a1e23cdec6d5feb683c">complete_shutdown</a> ()</td></tr>
-<tr class="memdesc:a004bdec347bc8a1e23cdec6d5feb683c"><td class="mdescLeft">&#160;</td><td class="mdescRight">shutdowns socket protocol  <br /></td></tr>
 <tr class="separator:a004bdec347bc8a1e23cdec6d5feb683c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e69a42368914452dfd14bd6c1222854" id="r_a5e69a42368914452dfd14bd6c1222854"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e69a42368914452dfd14bd6c1222854">CN_quit</a> ()</td></tr>
-<tr class="memdesc:a5e69a42368914452dfd14bd6c1222854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shutdown and destroys <code>currentSocket</code> child.  <br /></td></tr>
 <tr class="separator:a5e69a42368914452dfd14bd6c1222854"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6acfa89099048bf0e8df60a70f1bf762" id="r_a6acfa89099048bf0e8df60a70f1bf762"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6acfa89099048bf0e8df60a70f1bf762">CN_init</a> ()</td></tr>
 <tr class="separator:a6acfa89099048bf0e8df60a70f1bf762"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada1c4322f4f86d97f907bc97310bbf4a" id="r_ada1c4322f4f86d97f907bc97310bbf4a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada1c4322f4f86d97f907bc97310bbf4a">CN_socketInit</a> (<a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> **socket, enum <a class="el" href="#a4a71a7654993f7fb5f81df551cf64aad">CN_socketTypes</a> sockType)</td></tr>
 <tr class="separator:ada1c4322f4f86d97f907bc97310bbf4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3a1a7300845d8d479dc1c84cf340fa5" id="r_ae3a1a7300845d8d479dc1c84cf340fa5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3a1a7300845d8d479dc1c84cf340fa5">CN_socketDestroy</a> (<a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *socket)</td></tr>
+<tr class="memdesc:ae3a1a7300845d8d479dc1c84cf340fa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys socket.  <br /></td></tr>
 <tr class="separator:ae3a1a7300845d8d479dc1c84cf340fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b81c7bc7d911cf9a5e041e7ec031f05" id="r_a3b81c7bc7d911cf9a5e041e7ec031f05"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b81c7bc7d911cf9a5e041e7ec031f05">CN_socketShutdown</a> (<a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *socket)</td></tr>
+<tr class="memdesc:a3b81c7bc7d911cf9a5e041e7ec031f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down socket.  <br /></td></tr>
 <tr class="separator:a3b81c7bc7d911cf9a5e041e7ec031f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1b7cb479fd36c5fab8f4c683ac4daa4" id="r_ae1b7cb479fd36c5fab8f4c683ac4daa4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1b7cb479fd36c5fab8f4c683ac4daa4">CN_is_socket_active</a> (<a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *socket)</td></tr>
 <tr class="memdesc:ae1b7cb479fd36c5fab8f4c683ac4daa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if <code>currentSocket</code> is active and working.  <br /></td></tr>
 <tr class="separator:ae1b7cb479fd36c5fab8f4c683ac4daa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93542784c77dbe3334b726ded46d1deb" id="r_a93542784c77dbe3334b726ded46d1deb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93542784c77dbe3334b726ded46d1deb">CN_socketSend</a> (<a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *socket, char *buffer)</td></tr>
-<tr class="memdesc:a93542784c77dbe3334b726ded46d1deb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write to <code>currentSocket</code> given string <code>msg</code>  <br /></td></tr>
+<tr class="memdesc:a93542784c77dbe3334b726ded46d1deb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write to socket.  <br /></td></tr>
 <tr class="separator:a93542784c77dbe3334b726ded46d1deb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a024192ced8d0a63bf3a67c5814980de4" id="r_a024192ced8d0a63bf3a67c5814980de4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a024192ced8d0a63bf3a67c5814980de4">CN_socketRecv</a> (<a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *socket, char *buffer)</td></tr>
-<tr class="memdesc:a024192ced8d0a63bf3a67c5814980de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read from <code>currentSocket</code> to given <code>msg</code>  <br /></td></tr>
+<tr class="memdesc:a024192ced8d0a63bf3a67c5814980de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read from socket.  <br /></td></tr>
 <tr class="separator:a024192ced8d0a63bf3a67c5814980de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad026fc891e0c782365d835eda1997d1" id="r_aad026fc891e0c782365d835eda1997d1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad026fc891e0c782365d835eda1997d1">CN_socketConnect</a> (<a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *socket, char *address, char *port)</td></tr>
-<tr class="memdesc:aad026fc891e0c782365d835eda1997d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect to server given <code>addr</code> and <code>port</code>  <br /></td></tr>
+<tr class="memdesc:aad026fc891e0c782365d835eda1997d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect to a specified server.  <br /></td></tr>
 <tr class="separator:aad026fc891e0c782365d835eda1997d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9140590981fc4ebbca86ceec1106e209" id="r_a9140590981fc4ebbca86ceec1106e209"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9140590981fc4ebbca86ceec1106e209">CN_socketAccept</a> (<a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *socket, <a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *connectionSocket)</td></tr>
-<tr class="memdesc:a9140590981fc4ebbca86ceec1106e209"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accepts socket from server.  <br /></td></tr>
-<tr class="separator:a9140590981fc4ebbca86ceec1106e209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a125347091cdbb63a91491bf01a87a328" id="r_a125347091cdbb63a91491bf01a87a328"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a125347091cdbb63a91491bf01a87a328">CN_socketAccept</a> (<a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *serverSocket, <a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *connectionSocket)</td></tr>
+<tr class="memdesc:a125347091cdbb63a91491bf01a87a328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes newly connected connection to socket.  <br /></td></tr>
+<tr class="separator:a125347091cdbb63a91491bf01a87a328"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa11934ab1146e2bd3779d24aac14c940" id="r_aa11934ab1146e2bd3779d24aac14c940"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa11934ab1146e2bd3779d24aac14c940">CN_socketHost</a> (<a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *socket, char *port)</td></tr>
+<tr class="memdesc:aa11934ab1146e2bd3779d24aac14c940"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hosts server given socket.  <br /></td></tr>
 <tr class="separator:aa11934ab1146e2bd3779d24aac14c940"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -185,8 +184,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Error code list. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a2ef8c26e904f3db1c7c69221c7f795fba371323dca8b7a4bfc5f590d4c9a75f67" name="a2ef8c26e904f3db1c7c69221c7f795fba371323dca8b7a4bfc5f590d4c9a75f67"></a>NP_NO_ERROR&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2ef8c26e904f3db1c7c69221c7f795fba86b33646a51dc75e1e949772186a803a" name="a2ef8c26e904f3db1c7c69221c7f795fba86b33646a51dc75e1e949772186a803a"></a>NONEXISTENT_SOCKET&#160;</td><td class="fielddoc"></td></tr>
@@ -236,8 +233,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Return string literal given <code>errorCode</code> </p>
 
 </div>
 </div>
@@ -295,12 +290,10 @@ false - <code>currentSocket</code> is unusable </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Shutdown and destroys <code>currentSocket</code> child. </p>
-
 </div>
 </div>
-<a id="a9140590981fc4ebbca86ceec1106e209" name="a9140590981fc4ebbca86ceec1106e209"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9140590981fc4ebbca86ceec1106e209">&#9670;&#160;</a></span>CN_socketAccept()</h2>
+<a id="a125347091cdbb63a91491bf01a87a328" name="a125347091cdbb63a91491bf01a87a328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a125347091cdbb63a91491bf01a87a328">&#9670;&#160;</a></span>CN_socketAccept()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -308,7 +301,7 @@ false - <code>currentSocket</code> is unusable </dd></dl>
         <tr>
           <td class="memname">bool CN_socketAccept </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *</td>          <td class="paramname"><span class="paramname"><em>socket</em>, </span></td>
+          <td class="paramtype"><a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a> *</td>          <td class="paramname"><span class="paramname"><em>serverSocket</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -318,8 +311,22 @@ false - <code>currentSocket</code> is unusable </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Accepts socket from server. </p>
-<dl class="section return"><dt>Returns</dt><dd>classSocket - Accepted connection's socket is returned </dd></dl>
+<p>Writes newly connected connection to socket. </p>
+<p>Accepts new socket from <code>serverSocket</code> and writes it to <code>connectionSocket</code></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">serverSocket</td><td>an instance of <code><a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a></code> </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">connectionSocket</td><td>an instance of &lsquo;<a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a>&rsquo;</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td><code>connectionSocket</code> is now written with new connection from <code>serverSocket</code> </td></tr>
+    <tr><td class="paramname">false</td><td>An error has occurred </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -347,17 +354,23 @@ false - <code>currentSocket</code> is unusable </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Connect to server given <code>addr</code> and <code>port</code> </p>
+<p>Connect to a specified server. </p>
+<p>Connect to server using <code>address</code> and <code>port</code> and writes that socket to <code>socket</code></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>String given for requested server address </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>Int given for requested server port </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">socket</td><td>an instance of <code><a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a></code> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">address</td><td>a char pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>a char pointer</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - connected to server successfully </dd>
-<dd>
-false - An error has occurred </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td><code>socket</code> is now connected to server </td></tr>
+    <tr><td class="paramname">false</td><td>An error has occurred </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -375,6 +388,22 @@ false - An error has occurred </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Destroys socket. </p>
+<p>Destroys socket</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">socket</td><td>an instance of <code><a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a></code></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">`socket`</td><td>is destroyed correctly </td></tr>
+    <tr><td class="paramname">false</td><td>An error has occurred </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -396,6 +425,23 @@ false - An error has occurred </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Hosts server given socket. </p>
+<p>Given a <code><a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a></code> instance and a port: hosts a server</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">socket</td><td>an instance of <code><a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a></code> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>a char pointer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>Server is now being hosted on <code>port</code> through <code>socket</code> </td></tr>
+    <tr><td class="paramname">false</td><td>An error has occurred </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -439,16 +485,22 @@ false - An error has occurred </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Read from <code>currentSocket</code> to given <code>msg</code> </p>
+<p>Read from socket. </p>
+<p>Reads from socket given <code>socket</code> and writes bytes to <code>buffer</code></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">msg</td><td>given char pointer to write read bytes to </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">socket</td><td>an instance of <code><a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a></code> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>a char pointer</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - Bytes from <code>currentSocket</code> is correctly read and written to <code>msg</code> </dd>
-<dd>
-false - An error has occurred </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>Read bytes from <code>socket</code> are written to <code>buffer</code> </td></tr>
+    <tr><td class="paramname">false</td><td>An error has occurred </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -471,16 +523,22 @@ false - An error has occurred </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Write to <code>currentSocket</code> given string <code>msg</code> </p>
+<p>Write to socket. </p>
+<p>Writes to <code>socket</code> given <code>buffer</code></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">msg</td><td>String given to write to <code>currentSocket</code> </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">socket</td><td>an instance of <code><a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a></code> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>a char pointer</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - <code>msg</code> is sent to <code>currentSocket</code> correctly </dd>
-<dd>
-false - An error has occurred </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>Bytes from <code>buffer</code> are written to <code>socket</code> </td></tr>
+    <tr><td class="paramname">false</td><td>An error has occurred </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -499,6 +557,22 @@ false - An error has occurred </dd></dl>
       </table>
 </div><div class="memdoc">
 
+<p>Shuts down socket. </p>
+<p>Shuts down socket</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">socket</td><td>an instance of <code><a class="el" href="struct_c_n__socket__object.html">CN_socket_object</a></code></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">`socket`</td><td>is shutdown correctly </td></tr>
+    <tr><td class="paramname">false</td><td>An error has occurred </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a004bdec347bc8a1e23cdec6d5feb683c" name="a004bdec347bc8a1e23cdec6d5feb683c"></a>
@@ -515,8 +589,6 @@ false - An error has occurred </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>shutdowns socket protocol </p>
 
 </div>
 </div>

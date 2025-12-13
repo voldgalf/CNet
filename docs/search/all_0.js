@@ -7,7 +7,7 @@ var searchData=
   ['cn_5fquit_4',['CN_quit',['../globals_8h.html#a5e69a42368914452dfd14bd6c1222854',1,'globals.h']]],
   ['cn_5fsocket_5',['CN_socket',['../globals_8h.html#a3dcbfd525ee39b85a095f6a3f2dfb7ff',1,'globals.h']]],
   ['cn_5fsocket_5fobject_6',['CN_socket_object',['../struct_c_n__socket__object.html',1,'']]],
-  ['cn_5fsocketaccept_7',['CN_socketAccept',['../globals_8h.html#a9140590981fc4ebbca86ceec1106e209',1,'globals.h']]],
+  ['cn_5fsocketaccept_7',['CN_socketAccept',['../globals_8h.html#a125347091cdbb63a91491bf01a87a328',1,'globals.h']]],
   ['cn_5fsocketconnect_8',['CN_socketConnect',['../globals_8h.html#aad026fc891e0c782365d835eda1997d1',1,'globals.h']]],
   ['cn_5fsocketdestroy_9',['CN_socketDestroy',['../globals_8h.html#ae3a1a7300845d8d479dc1c84cf340fa5',1,'globals.h']]],
   ['cn_5fsockethost_10',['CN_socketHost',['../globals_8h.html#aa11934ab1146e2bd3779d24aac14c940',1,'globals.h']]],

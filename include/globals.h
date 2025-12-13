@@ -14,9 +14,6 @@
 
 typedef unsigned long long CN_socket;
 
-/*!
-* \brief Error code list
-*/
 enum CN_errorCodes {
 NP_NO_ERROR,
 NONEXISTENT_SOCKET,
@@ -39,12 +36,7 @@ SOCKET_TYPE_SERVER_CLIENT,
 SOCKET_TYPE_CLIENT,
 };
 
-/*!
-* \struct socket_operations
-*
-* \brief Base class including sending, receiving data and killing sockets
-*
-*/
+
 typedef struct  {
     enum CN_socketTypes socketType;
 
@@ -64,41 +56,43 @@ typedef struct  {
     enum CN_errorCodes errorCode;
 } CN_socket_object;
 
-/*!
-* \brief Return string literal given `errorCode`
-*/
+
 const char *CN_get_error(enum CN_errorCodes errorCode);
 
-/*!
-*
-* \brief shutdowns socket protocol
-*
-*/
+
 bool complete_shutdown();
 
-/*!
-* \brief Shutdown and destroys `currentSocket` child
-*/
+
 bool CN_quit();
 
-/*!
-*
-* \brief initializes socket protocol
-* \example examples/example_server.cpp
-*
-*/
+
 bool CN_init();
 
-/*!
-*
-* \brief initializes socket protocol
-* \example examples/example_server.cpp
-*
-*/
+
 bool CN_socketInit(CN_socket_object ** socket, enum CN_socketTypes sockType);
 
+/*!
+* \brief Destroys socket
+*
+* Destroys socket
+*
+* @param[in,out] socket an instance of `CN_socket_object`
+*
+* @retval `socket` is destroyed correctly
+* @retval false An error has occurred
+*/
 bool CN_socketDestroy(CN_socket_object * socket);
 
+/*!
+* \brief Shuts down socket
+*
+* Shuts down socket
+*
+* @param[in,out] socket an instance of `CN_socket_object`
+*
+* @retval `socket` is shutdown correctly
+* @retval false An error has occurred
+*/
 bool CN_socketShutdown(CN_socket_object * socket);
 
 /*!
@@ -109,34 +103,67 @@ bool CN_socketShutdown(CN_socket_object * socket);
 bool CN_is_socket_active(CN_socket_object* socket);
 
 /*!
-* \brief Write to `currentSocket` given string `msg`
-* \param [in] msg String given to write to `currentSocket`
-* \return true - `msg` is sent to `currentSocket` correctly
-* \return false - An error has occurred
+* \brief Write to socket
+*
+* Writes to `socket` given `buffer`
+*
+* @param[in,out] socket an instance of `CN_socket_object`
+* @param[in] buffer a char pointer
+ *
+* @retval true Bytes from `buffer` are written to `socket`
+* @retval false An error has occurred
 */
 bool CN_socketSend(CN_socket_object* socket, char * buffer);
 
 /*!
-* \brief Read from `currentSocket` to given `msg`
-* \param [in] msg given char pointer to write read bytes to
-* \return true - Bytes from `currentSocket` is correctly read and written to `msg`
-* \return false - An error has occurred
+* \brief Read from socket
+*
+* Reads from socket given `socket` and writes bytes to `buffer`
+*
+* @param[in,out] socket an instance of `CN_socket_object`
+* @param[in] buffer a char pointer
+ *
+* @retval true Read bytes from `socket` are written to `buffer`
+* @retval false An error has occurred
 */
 bool CN_socketRecv(CN_socket_object* socket, char * buffer);
 
 /*!
-* \brief Connect to server given `addr` and `port`
-* \param [in] addr String given for requested server address
-* \param [in] port Int given for requested server port
-* \return true - connected to server successfully
-* \return false - An error has occurred
+* \brief Connect to a specified server
+*
+* Connect to server using `address` and `port` and writes that socket to `socket`
+*
+* @param[in,out] socket an instance of `CN_socket_object`
+* @param[in] address a char pointer
+* @param[in] port a char pointer
+*
+* @retval true `socket` is now connected to server
+* @retval false An error has occurred
 */
 bool CN_socketConnect(CN_socket_object* socket, char * address, char * port);
 
 /*!
-* \brief Accepts socket from server
-* \return \ref classSocket - Accepted connection's socket is returned
+* \brief Writes newly connected connection to socket
+*
+* Accepts new socket from `serverSocket` and writes it to `connectionSocket`
+*
+* @param[in,out] serverSocket an instance of `CN_socket_object`
+* @param[in,out] connectionSocket an instance of `CN_socket_object'
+ *
+* @retval true `connectionSocket` is now written with new connection from `serverSocket`
+* @retval false An error has occurred
 */
-bool CN_socketAccept(CN_socket_object* socket, CN_socket_object* connectionSocket);
+bool CN_socketAccept(CN_socket_object* serverSocket, CN_socket_object* connectionSocket);
 
+/*!
+* \brief Hosts server given socket
+*
+* Given a `CN_socket_object` instance and a port: hosts a server
+*
+* @param[in,out] socket an instance of `CN_socket_object`
+* @param[in] port a char pointer
+ *
+* @retval true Server is now being hosted on `port` through `socket`
+* @retval false An error has occurred
+*/
 bool CN_socketHost(CN_socket_object * socket, char * port);
