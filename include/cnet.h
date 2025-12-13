@@ -47,7 +47,7 @@ enum CNET_SOCKET_TYPES {
 * \struct CNet_socket_instance
 * \brief data structure used throughout this library
 *
-* Data structure used for the CNetet socket protocol
+* Data structure used for the CNet socket protocol
 */
 typedef struct {
     /*!
