@@ -1,16 +1,16 @@
 var searchData=
 [
-  ['cn_5fget_5ferror_0',['CN_get_error',['../globals_8h.html#ab7779e380871afb16d71bd72586cdd9a',1,'globals.h']]],
-  ['cn_5finit_1',['CN_init',['../globals_8h.html#a6acfa89099048bf0e8df60a70f1bf762',1,'globals.h']]],
-  ['cn_5fis_5fsocket_5factive_2',['CN_is_socket_active',['../globals_8h.html#ae1b7cb479fd36c5fab8f4c683ac4daa4',1,'globals.h']]],
-  ['cn_5fquit_3',['CN_quit',['../globals_8h.html#a5e69a42368914452dfd14bd6c1222854',1,'globals.h']]],
-  ['cn_5fsocketaccept_4',['CN_socketAccept',['../globals_8h.html#a125347091cdbb63a91491bf01a87a328',1,'globals.h']]],
-  ['cn_5fsocketconnect_5',['CN_socketConnect',['../globals_8h.html#aad026fc891e0c782365d835eda1997d1',1,'globals.h']]],
-  ['cn_5fsocketdestroy_6',['CN_socketDestroy',['../globals_8h.html#ae3a1a7300845d8d479dc1c84cf340fa5',1,'globals.h']]],
-  ['cn_5fsockethost_7',['CN_socketHost',['../globals_8h.html#aa11934ab1146e2bd3779d24aac14c940',1,'globals.h']]],
-  ['cn_5fsocketinit_8',['CN_socketInit',['../globals_8h.html#ada1c4322f4f86d97f907bc97310bbf4a',1,'globals.h']]],
-  ['cn_5fsocketrecv_9',['CN_socketRecv',['../globals_8h.html#a024192ced8d0a63bf3a67c5814980de4',1,'globals.h']]],
-  ['cn_5fsocketsend_10',['CN_socketSend',['../globals_8h.html#a93542784c77dbe3334b726ded46d1deb',1,'globals.h']]],
-  ['cn_5fsocketshutdown_11',['CN_socketShutdown',['../globals_8h.html#a3b81c7bc7d911cf9a5e041e7ec031f05',1,'globals.h']]],
+  ['cnet_5fget_5ferror_0',['CNet_get_error',['../globals_8h.html#ae7187a5522e6a590758fb42f76bae2e2',1,'globals.h']]],
+  ['cnet_5finit_1',['CNet_init',['../globals_8h.html#a01feebeeec4eaf1793e3b1ac021bc94b',1,'globals.h']]],
+  ['cnet_5fis_5fsocket_5factive_2',['CNet_is_socket_active',['../globals_8h.html#a08130a54cc097a4877f98f5caa52cd58',1,'globals.h']]],
+  ['cnet_5fquit_3',['CNet_quit',['../globals_8h.html#ab9297bf7e174b10a4f68eb4121e6f744',1,'globals.h']]],
+  ['cnet_5fsocketaccept_4',['CNet_socketAccept',['../globals_8h.html#aecb26c0baa1cb8c04296cc267f90271f',1,'globals.h']]],
+  ['cnet_5fsocketconnect_5',['CNet_socketConnect',['../globals_8h.html#aed2ef0b7c1b0041648637cedf7f386fb',1,'globals.h']]],
+  ['cnet_5fsocketdestroy_6',['CNet_socketDestroy',['../globals_8h.html#a4fb8f77031272c62661fcdaca384c6eb',1,'globals.h']]],
+  ['cnet_5fsockethost_7',['CNet_socketHost',['../globals_8h.html#a92c1859918203c7619670ec100bfe0f5',1,'globals.h']]],
+  ['cnet_5fsocketinit_8',['CNet_socketInit',['../globals_8h.html#a1aa68595cefeda100762f60d42ee112d',1,'globals.h']]],
+  ['cnet_5fsocketrecv_9',['CNet_socketRecv',['../globals_8h.html#a403a5088da0e46d95e9b80e76407d71d',1,'globals.h']]],
+  ['cnet_5fsocketsend_10',['CNet_socketSend',['../globals_8h.html#afe3a9cfbf0f41ee6e9866489af45343c',1,'globals.h']]],
+  ['cnet_5fsocketshutdown_11',['CNet_socketShutdown',['../globals_8h.html#a773169203ac1b1f5a6acebbdfc8652ec',1,'globals.h']]],
   ['complete_5fshutdown_12',['complete_shutdown',['../globals_8h.html#a004bdec347bc8a1e23cdec6d5feb683c',1,'globals.h']]]
 ];

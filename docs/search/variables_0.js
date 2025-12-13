@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['currentsocket_0',['currentSocket',['../struct_c_n__socket__object.html#a08726b7a227098a2631571de66bedfdc',1,'CN_socket_object']]]
+  ['errorcode_0',['errorCode',['../struct_c_net__socket__object.html#adb10064089cdc20e1d728c812b208877',1,'CNet_socket_object']]]
 ];

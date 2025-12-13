@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cn_5fsocket_0',['CN_socket',['../globals_8h.html#a3dcbfd525ee39b85a095f6a3f2dfb7ff',1,'globals.h']]]
+  ['cnet_5fsocket_0',['CNet_socket',['../globals_8h.html#ae371c5587bd47c0a07f82b476c9f10af',1,'globals.h']]]
 ];

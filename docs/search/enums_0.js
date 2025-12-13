@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['cn_5ferrorcodes_0',['CN_errorCodes',['../globals_8h.html#a2ef8c26e904f3db1c7c69221c7f795fb',1,'globals.h']]],
-  ['cn_5fsockettypes_1',['CN_socketTypes',['../globals_8h.html#a4a71a7654993f7fb5f81df551cf64aad',1,'globals.h']]]
+  ['cnet_5ferrorcodes_0',['CNet_errorCodes',['../globals_8h.html#a38ac89f40d0c83b4849fdc034001a86b',1,'globals.h']]],
+  ['cnet_5fsockettypes_1',['CNet_socketTypes',['../globals_8h.html#ad2458b612c0b207dff46e71d3f1203f7',1,'globals.h']]]
 ];

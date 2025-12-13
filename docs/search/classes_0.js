@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cn_5fsocket_5fobject_0',['CN_socket_object',['../struct_c_n__socket__object.html',1,'']]]
+  ['cnet_5fsocket_5fobject_0',['CNet_socket_object',['../struct_c_net__socket__object.html',1,'']]]
 ];
