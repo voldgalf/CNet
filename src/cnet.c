@@ -290,8 +290,14 @@ bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_server request)
     struct sockaddr_in serv_addr;
     struct hostent *server;
 
+    server = gethostbyname(request.addr);
+    if (server == NULL) {
+        fprintf(stderr,"ERROR, no such host\n");
+        exit(0);
+    }
+
     clientSocket->socket = socket(AF_INET, SOCK_STREAM, 0);
-    if (clientSocket->socket == NULL) {
+    if (clientSocket->socket < 0) {
         clientSocket->errorCode = CNET_SOCKET_CREATION_ERROR;
         return false;
     }
