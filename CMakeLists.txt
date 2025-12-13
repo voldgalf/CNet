@@ -1,9 +1,7 @@
-cmake_minimum_required(VERSION 3.31)
+cmake_minimum_required(VERSION 3.00)
 project(CNetLib LANGUAGES C)
 project(CNet LANGUAGES C)
 set(CMAKE_C_STANDARD 17)
-add_definitions(-DCONFIG_CTRL_IFACE)
-
 message(STATUS, ${CMAKE_INSTALL_PREFIX})
 
 add_library(CNetLib ${PROJECT_SOURCE_DIR}/src/cnet.c)

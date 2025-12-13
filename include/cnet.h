@@ -19,10 +19,14 @@ extern "C" {
 #include <ws2tcpip.h>
 
 #elif __linux__
+    #include <stdio.h>
+    #include <stdlib.h>
     #include <unistd.h>
-    #include <sys/socket.h>
-    #include <sys/un.h>
+    #include <string.h>
     #include <sys/types.h>
+    #include <sys/socket.h>
+    #include <netinet/in.h>
+    #include <netdb.h>
 #endif
 
 typedef unsigned long long CNet_socket;

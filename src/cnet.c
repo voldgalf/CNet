@@ -269,10 +269,6 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer) {
 
     memset(buffer, 0, 512);
 
-    if (socket->socket == INVALID_SOCKET) {
-        return false;
-    }
-
     int returnResult = 0;
 
     returnResult = recv(socket->socket, buffer, 512, 0);
@@ -331,10 +327,6 @@ bool CNet_socketAccept(CNet_socket_instance *serverSocket, CNet_socket_instance 
     listen(serverSocket->socket, 5);
     clilen = sizeof(cli_addr);
 
-    if (returnResult == SOCKET_ERROR) {
-        serverSocket->errorCode = CNET_SOCKET_LISTEN_ERROR;
-        return false;
-    }
 
     connectionSocket->socket = accept(serverSocket->socket, (struct sockaddr *) &cli_addr, &clilen);
 
