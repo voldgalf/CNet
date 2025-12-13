@@ -66,15 +66,6 @@ const char * CNet_getError(enum CNET_ERROR_CODES errorCode) {
         return true;
     }
 
-    bool CNet_socketDestroy(CNet_socket_object ** socket) {
-        if(!socket) {
-            return false;
-        } else {
-            free(*socket);
-            return true;
-        }
-    }
-
     bool CNet_socketShutdown(CNet_socket_object * socket) {
         shutdown(socket->socket, SD_SEND);
         closesocket(socket->socket);
@@ -238,3 +229,12 @@ const char * CNet_getError(enum CNET_ERROR_CODES errorCode) {
     }
 
 #endif
+
+    bool CNet_socketDestroy(CNet_socket_object ** socket) {
+        if(!socket) {
+            return false;
+        } else {
+            free(*socket);
+            return true;
+        }
+    }

@@ -145,6 +145,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a773169203ac1b1f5a6acebbdfc8652ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down socket.  <br /></td></tr>
 <tr class="separator:a773169203ac1b1f5a6acebbdfc8652ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8e9ff13f524d6f9457c97fe3ea26bef" id="r_af8e9ff13f524d6f9457c97fe3ea26bef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8e9ff13f524d6f9457c97fe3ea26bef">CNet_socketActive</a> (<a class="el" href="struct_c_net__socket__object.html">CNet_socket_object</a> *socket)</td></tr>
+<tr class="memdesc:af8e9ff13f524d6f9457c97fe3ea26bef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if socket is still running.  <br /></td></tr>
 <tr class="separator:af8e9ff13f524d6f9457c97fe3ea26bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe3a9cfbf0f41ee6e9866489af45343c" id="r_afe3a9cfbf0f41ee6e9866489af45343c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe3a9cfbf0f41ee6e9866489af45343c">CNet_socketSend</a> (<a class="el" href="struct_c_net__socket__object.html">CNet_socket_object</a> *socket, char *buffer)</td></tr>
 <tr class="memdesc:afe3a9cfbf0f41ee6e9866489af45343c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write to socket.  <br /></td></tr>
@@ -329,6 +330,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if socket is still running. </p>
+<p>Checks if socket is still running</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">socket</td><td>an instance of <code><a class="el" href="struct_c_net__socket__object.html" title="data structure used throughout this library">CNet_socket_object</a></code></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td><code>socket</code> is active </td></tr>
+    <tr><td class="paramname">false</td><td><code>socket</code> is inactive </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aa64ca0e02d82ea8c3662d87a3a7bcc16" name="aa64ca0e02d82ea8c3662d87a3a7bcc16"></a>
@@ -400,7 +417,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">`socket`</td><td>is destroyed correctly </td></tr>
+    <tr><td class="paramname">true</td><td><code>socket</code> is destroyed correctly </td></tr>
     <tr><td class="paramname">false</td><td>An error has occurred </td></tr>
   </table>
   </dd>
@@ -585,7 +602,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">`socket`</td><td>is shutdown correctly </td></tr>
+    <tr><td class="paramname">true</td><td><code>socket</code> is shutdown correctly </td></tr>
     <tr><td class="paramname">false</td><td>An error has occurred </td></tr>
   </table>
   </dd>
