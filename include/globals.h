@@ -4,11 +4,13 @@
 
 #pragma once
 
+#include <stdio.h>
+#include <stdbool.h>
+
 #ifdef  __WIN32
 #include <winsock2.h>
 #include <windows.h>
 #include <ws2tcpip.h>
-#include <stdio.h>
 #endif
 
 
