@@ -59,10 +59,12 @@ int main(void) {
     CNet_server serverStructure;
     serverStructure.addr = "127.0.0.1";
     serverStructure.port = "1234";
+    printf("Attempting to connect to %s:%s\n",serverStructure.addr, serverStructure.port);
 
     if (!CNet_socketConnect(clientSocket, serverStructure)) {
         printf("Error: %s\n", CNet_getError(clientSocket->errorCode));
     }
+    printf("Connected!\n");
 
     if (!CNet_socketSend(clientSocket, "Hello C")) {
         printf("Error: %s\n", CNet_getError(clientSocket->errorCode));
