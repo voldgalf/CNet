@@ -20,6 +20,7 @@ CNet_socket_object * myConnection = NULL;
 
 CNet_socketInit(&myConnection, SOCKET_TYPE_CLIENT);
 
+// Host
 if(!CNet_socketHost(myServer, "1234")) {
     printf("Fail");
 }

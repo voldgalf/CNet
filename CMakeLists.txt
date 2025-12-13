@@ -1,10 +1,18 @@
 cmake_minimum_required(VERSION 3.31)
+project(CNetLib LANGUAGES C)
 project(CNet LANGUAGES C)
-
 set(CMAKE_C_STANDARD 17)
+message(STATUS, ${CMAKE_INSTALL_PREFIX})
+
+add_library(CNetLib main.c ${PROJECT_SOURCE_DIR}/src/globals.c)
 
 add_executable(CNet main.c ${PROJECT_SOURCE_DIR}/src/globals.c)
+
+target_include_directories(CNetLib PRIVATE include)
 target_include_directories(CNet PRIVATE include)
 if (WIN32)
+    target_link_libraries(CNetLib PRIVATE ws2_32)
     target_link_libraries(CNet PRIVATE ws2_32)
 endif ()
+install(TARGETS CNetLib DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/)
+install(FILES ${PROJECT_SOURCE_DIR}/include/globals.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/)

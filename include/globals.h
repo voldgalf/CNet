@@ -4,6 +4,10 @@
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -17,27 +21,26 @@
 
 typedef unsigned long long CNet_socket;
 
-enum CNet_errorCodes {
-NP_NO_ERROR,
-NONEXISTENT_SOCKET,
+enum CNET_ERROR_CODES {
 
-SOCKET_CONNECT_ERROR,
-SOCKET_CREATE_ERROR,
-SOCKET_READ_ERROR,
-SOCKET_WRITE_ERROR,
+    CNET_SOCKET_INIT_ERROR,
+    CNET_SOCKET_WRITE_ERROR,
+    CNET_SOCKET_CREATION_ERROR,
+    CNET_SOCKET_READ_ERROR,
+    CNET_SOCKET_BIND_ERROR,
+    CNET_SOCKET_LISTEN_ERROR,
+    CNET_SOCKET_ALLOCATE_ERROR,
+    CNET_SOCKET_CONNECT_ERROR,
+    CNET_SOCKET_ACCEPT_ERROR,
+    CNET_SOCKET_INCORRECT_TYPE_ERROR,
 
-SERVER_LISTEN_ERROR,
-SERVER_ACCEPT_ERROR,
-SERVER_BIND_ERROR,
-
-INCORRECT_SOCKET_TYPE,
 };
 
-enum CNet_socketTypes {
-SOCKET_TYPE_UNINIT,
-SOCKET_TYPE_SERVER,
-SOCKET_TYPE_SERVER_CLIENT,
-SOCKET_TYPE_CLIENT,
+enum CNET_SOCKET_TYPES {
+    CNET_SOCKET_NOEXIST_TYPE,
+    CNET_SOCKET_SERVER_TYPE,
+    CNET_SOCKET_SERVER_CONNECTION_TYPE,
+    CNET_SOCKET_CLIENT_TYPE,
 };
 
 /*!
@@ -50,7 +53,7 @@ typedef struct  {
     /*!
     * \brief Contains the specified socket type upon initialization
     */
-    enum CNet_socketTypes socketType;
+    enum CNET_SOCKET_TYPES socketType;
 
     /*!
     * \brief The network socket itself
@@ -65,12 +68,12 @@ typedef struct  {
     /*!
     * \brief Stored enum of `errorCodes` used in np_get_error()
     */
-    enum CNet_errorCodes errorCode;
+    enum CNET_ERROR_CODES errorCode;
 
 } CNet_socket_object;
 
 
-const char * CNet_get_error(enum CNet_errorCodes errorCode);
+const char * CNet_getError(enum CNET_ERROR_CODES errorCode);
 
 
 bool complete_shutdown();
@@ -92,7 +95,7 @@ bool CNet_init();
 * @retval true socket is allocated and updated
 * @retval false An error has occurred
 */
-bool CNet_socketInit(CNet_socket_object ** socket, enum CNet_socketTypes sockType);
+bool CNet_socketInit(CNet_socket_object ** socket, enum CNET_SOCKET_TYPES sockType);
 
 /*!
 * \brief Destroys socket
@@ -119,7 +122,7 @@ bool CNet_socketDestroy(CNet_socket_object ** socket);
 bool CNet_socketShutdown(CNet_socket_object * socket);
 
 
-bool CNet_is_socket_active(CNet_socket_object* socket);
+bool CNet_socketActive(CNet_socket_object* socket);
 
 /*!
 * \brief Write to socket
@@ -159,7 +162,7 @@ bool CNet_socketRecv(CNet_socket_object* socket, char * buffer);
 * @retval true `socket` is now connected to server
 * @retval false An error has occurred
 */
-bool CNet_socketConnect(CNet_socket_object* socket, char * address, char * port);
+bool CNet_socketConnect(CNet_socket_object* socket, const char * address, const char * port);
 
 /*!
 * \brief Writes newly connected connection to socket
@@ -185,4 +188,8 @@ bool CNet_socketAccept(CNet_socket_object* serverSocket, CNet_socket_object* con
 * @retval true Server is now being hosted on `port` through `socket`
 * @retval false An error has occurred
 */
-bool CNet_socketHost(CNet_socket_object * serverSocket, char * port);
+bool CNet_socketHost(CNet_socket_object * serverSocket, const char * port);
+
+#ifdef __cplusplus
+}
+#endif

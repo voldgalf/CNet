@@ -9,47 +9,64 @@ int main(void) {
     CNet_init();
     /*
     CNet_socket_object * myServer = NULL;
+    if(!CNet_socketInit(&myServer, CNET_SOCKET_SERVER_TYPE)) {
+        printf("Error: %s\n", CNet_get_error(myServer->errorCode));
+    }
 
-    CNet_socketInit(&myServer, SOCKET_TYPE_SERVER);
     CNet_socket_object * myConnection = NULL;
-
-    CNet_socketInit(&myConnection, SOCKET_TYPE_CLIENT);
+    if(!CNet_socketInit(&myConnection, CNET_SOCKET_SERVER_CONNECTION_TYPE)) {
+        printf("Error: %s\n", CNet_get_error(myServer->errorCode));
+    }
 
     if(!CNet_socketHost(myServer, "1234")) {
-        printf("Fail");
+        printf("Error: %s\n", CNet_get_error(myServer->errorCode));
     }
 
     printf("Waiting for connection...\n");
 
     char buffer[512];
-    CNet_socketAccept(myServer, myConnection);
+    if(!CNet_socketAccept(myServer, myConnection)) {
+        printf("Error: %s\n", CNet_get_error(myServer->errorCode));
+    }
+    while(true) {
 
-    CNet_socketRecv(myConnection, buffer);
+        if (!CNet_socketRecv(myConnection, buffer)) {
+            printf("Error: %s\n", CNet_get_error(myServer->errorCode));
+            break;
+        }
 
-    printf("Received: %s\n", buffer);
+        printf("Received: %s\n", buffer);
 
+        if(!CNet_socketSend(myConnection, buffer)) {
+            printf("Error: %s\n", CNet_get_error(myServer->errorCode));
+            break;
+        }
+    }
     CNet_socketShutdown(myConnection);
     CNet_socketShutdown(myServer);
 
     CNet_socketDestroy(&myServer);
     CNet_socketDestroy(&myConnection);
-     */
+    */
 
     CNet_socket_object * clientSocket = NULL;
 
-    if(!CNet_socketInit(&clientSocket, SOCKET_TYPE_CLIENT)) {
-        printf("%s\n", CNet_get_error(clientSocket->errorCode));
+    if(!CNet_socketInit(&clientSocket, CNET_SOCKET_CLIENT_TYPE)) {
+        printf("%s\n", CNet_getError(clientSocket->errorCode));
     }
 
     if(!CNet_socketConnect(clientSocket, "127.0.0.1", "1234")) {
-        printf("%s\n", CNet_get_error(clientSocket->errorCode));
+        printf("%s\n", CNet_getError(clientSocket->errorCode));
     }
 
     if(!CNet_socketSend(clientSocket, "Hello C")) {
-        printf("%s\n", CNet_get_error(clientSocket->errorCode));
+        printf("%s\n", CNet_getError(clientSocket->errorCode));
     }
 
-    printf("Hello, World!\n");
+    CNet_socketShutdown(clientSocket);
+    CNet_socketDestroy(&clientSocket);
+
+    CNet_quit();
 
     CNet_quit();
 
