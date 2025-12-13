@@ -5,4 +5,6 @@ set(CMAKE_C_STANDARD 23)
 
 add_executable(CNet main.c include/globals.h src/globals.c)
 
-target_link_libraries(CNet PRIVATE ws2_32)
+if (WIN32)
+    target_link_libraries(CNet PRIVATE ws2_32)
+endif ()
