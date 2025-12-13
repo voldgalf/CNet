@@ -4,6 +4,10 @@
 
 #include "../include/globals.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 const char * CNet_get_error(enum CNet_errorCodes errorCode) {
     const char * message = "";
     switch (errorCode) {
@@ -215,4 +219,8 @@ const char * CNet_get_error(enum CNet_errorCodes errorCode) {
     }
 
 
+#endif
+
+#ifdef __cplusplus
+}
 #endif
