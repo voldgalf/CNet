@@ -7,10 +7,10 @@ int main(void) {
 
     CNet_init();
     /*
-    CNet_socket_object * myServer = nullptr;
+    CNet_socket_object * myServer = NULL;
 
     CNet_socketInit(&myServer, SOCKET_TYPE_SERVER);
-    CNet_socket_object * myConnection = nullptr;
+    CNet_socket_object * myConnection = NULL;
 
     CNet_socketInit(&myConnection, SOCKET_TYPE_CLIENT);
 
@@ -34,7 +34,7 @@ int main(void) {
     CNet_socketDestroy(&myConnection);
      */
 
-    CNet_socket_object * clientSocket = nullptr;
+    CNet_socket_object * clientSocket = NULL;
 
     if(!CNet_socketInit(&clientSocket, SOCKET_TYPE_CLIENT)) {
         printf("%s\n", CNet_get_error(clientSocket->errorCode));

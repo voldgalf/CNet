@@ -183,7 +183,7 @@ const char * CNet_get_error(enum CNet_errorCodes errorCode) {
 
     int returnResult;
 
-    struct addrinfo *result = nullptr;
+    struct addrinfo *result = NULL;
     struct addrinfo hints;
 
     ZeroMemory(&hints, sizeof(hints));
@@ -192,7 +192,7 @@ const char * CNet_get_error(enum CNet_errorCodes errorCode) {
     hints.ai_protocol = IPPROTO_TCP;
     hints.ai_flags = AI_PASSIVE;
 
-    returnResult = getaddrinfo(nullptr, port, &hints, &result);
+    returnResult = getaddrinfo(NULL, port, &hints, &result);
     if (returnResult != 0) {
 
         return false;
