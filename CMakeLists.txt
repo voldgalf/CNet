@@ -4,7 +4,7 @@ project(CNet LANGUAGES C)
 set(CMAKE_C_STANDARD 17)
 message(STATUS, ${CMAKE_INSTALL_PREFIX})
 
-add_library(CNetLib main.c ${PROJECT_SOURCE_DIR}/src/cnet.c)
+add_library(CNetLib ${PROJECT_SOURCE_DIR}/src/cnet.c)
 
 add_executable(CNet main.c ${PROJECT_SOURCE_DIR}/src/cnet.c)
 

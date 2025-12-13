@@ -4,8 +4,8 @@
 
 #include "../include/cnet.h"
 
-const char * CNet_getError(enum CNET_ERROR_CODES errorCode) {
-    const char * message = "";
+const char *CNet_getError(enum CNET_ERROR_CODES errorCode) {
+    const char *message = "";
     switch (errorCode) {
         case CNET_SOCKET_INIT_ERROR:
             message = "Unable to initialize socket";
@@ -41,200 +41,193 @@ const char * CNet_getError(enum CNET_ERROR_CODES errorCode) {
     return message;
 }
 
+bool CNet_socketDestroy(CNet_socket_object **socket) {
+    if (!socket) {
+        return false;
+    } else {
+        free(*socket);
+        return true;
+    }
+}
+
 #ifdef __WIN32
 
-    bool CNet_quit() {
-        WSACleanup();
+bool CNet_quit() {
+    WSACleanup();
+    return true;
+}
+
+bool CNet_init() {
+    WSADATA wsaData;
+    int returnResult = 0;
+    returnResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
+    if (returnResult != 0) {
+        printf("WSAStartup failed with error: %d\n", returnResult);
+        return false;
+    }
+    return true;
+}
+
+bool CNet_socketInit(CNet_socket_object **socket, enum CNET_SOCKET_TYPES sockType) {
+    *socket = malloc(sizeof(CNet_socket));
+    (*socket)->socketType = sockType;
+    (*socket)->socket = -1;
+    return true;
+}
+
+bool CNet_socketShutdown(CNet_socket_object *socket) {
+    shutdown(socket->socket, SD_SEND);
+    closesocket(socket->socket);
+    return true;
+}
+
+bool CNet_socketSend(CNet_socket_object *socket, char *buffer) {
+
+    if (socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
+        socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
+        return false;
+    }
+
+
+    int returnResult = 0;
+    returnResult = send(socket->socket, buffer, strlen(buffer), 0);
+    if (returnResult == SOCKET_ERROR) {
+        socket->errorCode = CNET_SOCKET_WRITE_ERROR;
+        return false;
+    }
+    return true;
+
+}
+
+bool CNet_socketRecv(CNet_socket_object *socket, char *buffer) {
+
+    if (socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
+        socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
+        return false;
+    }
+
+    memset(buffer, 0, 512);
+
+    if (socket->socket == INVALID_SOCKET) {
+        return false;
+    }
+    int returnResult = 0;
+    returnResult = recv(socket->socket, buffer, 512, 0);
+    if (returnResult > 0) {
         return true;
+    } else {
+        socket->errorCode = CNET_SOCKET_READ_ERROR;
+        return false;
+    }
+}
+
+bool CNet_socketConnect(CNet_socket_object *clientSocket, const char *address, const char *port) {
+
+    if (clientSocket->socketType != CNET_SOCKET_CLIENT_TYPE) {
+        clientSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
+        return false;
     }
 
-    bool CNet_init() {
-        WSADATA wsaData;
-        int returnResult = 0;
-        returnResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
-        if (returnResult != 0) {
-            printf("WSAStartup failed with error: %d\n", returnResult);
-            return false;
-        }
-        return true;
+    int returnResult = 0;
+    struct addrinfo *result = NULL,
+            hints;
+
+    ZeroMemory(&hints, sizeof(hints));
+    hints.ai_family = AF_INET;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_protocol = IPPROTO_TCP;
+
+    returnResult = getaddrinfo(address, port, &hints, &result);
+    if (returnResult != 0) {
+
+        return false;
     }
 
-    bool CNet_socketInit(CNet_socket_object ** socket, enum CNET_SOCKET_TYPES sockType) {
-        *socket = malloc(sizeof(CNet_socket));
-        (*socket)->socketType = sockType;
-        (*socket)->socket = -1;
-        return true;
+    clientSocket->socket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
+    if (clientSocket->socket == INVALID_SOCKET) {
+        clientSocket->errorCode = CNET_SOCKET_CREATION_ERROR;
+        freeaddrinfo(result);
+
+        return false;
     }
 
-    bool CNet_socketShutdown(CNet_socket_object * socket) {
-        shutdown(socket->socket, SD_SEND);
-        closesocket(socket->socket);
-        return true;
+    returnResult = connect(clientSocket->socket, result->ai_addr, (int) result->ai_addrlen);
+    if (returnResult == SOCKET_ERROR) {
+        clientSocket->errorCode = CNET_SOCKET_CONNECT_ERROR;
+        closesocket(clientSocket->socket);
+        freeaddrinfo(result);
+
+        return false;
     }
 
-    bool CNet_socketSend(CNet_socket_object* socket, char * buffer) {
+    return true;
+}
 
-        if(socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
-            socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
-            return false;
-        }
+bool CNet_socketAccept(CNet_socket_object *serverSocket, CNet_socket_object *connectionSocket) {
 
-        if(!socket) {
-
-            return false;
-        }
-
-        int returnResult = 0;
-        returnResult = send(socket->socket, buffer, strlen(buffer), 0);
-        if (returnResult == SOCKET_ERROR){
-            socket->errorCode = CNET_SOCKET_WRITE_ERROR;
-            return false;
-        }
-        return true;
-
+    if (serverSocket->socketType != CNET_SOCKET_SERVER_TYPE) {
+        serverSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
+        return false;
     }
 
-    bool CNet_socketRecv(CNet_socket_object* socket, char * buffer) {
+    int returnResult;
 
-        if(socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
-            socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
-            return false;
-        }
+    returnResult = listen(serverSocket->socket, SOMAXCONN);
 
-        memset(buffer, 0, 512);
-
-        if (socket->socket == INVALID_SOCKET) {
-            return false;
-        }
-        int returnResult = 0;
-        returnResult = recv(socket->socket, buffer, 512, 0);
-        if (returnResult > 0) {
-            return true;
-        } else {
-            socket->errorCode = CNET_SOCKET_READ_ERROR;
-            return false;
-        }
+    if (returnResult == SOCKET_ERROR) {
+        serverSocket->errorCode = CNET_SOCKET_LISTEN_ERROR;
+        closesocket(serverSocket->socket);
+        return false;
     }
 
-    bool CNet_socketConnect(CNet_socket_object* clientSocket, const char * address, const char * port) {
-
-        if(clientSocket->socketType != CNET_SOCKET_CLIENT_TYPE) {
-            clientSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
-            return false;
-        }
-
-        int returnResult = 0;
-        struct addrinfo *result = NULL,
-                hints;
-
-        ZeroMemory(&hints, sizeof(hints));
-        hints.ai_family = AF_INET;
-        hints.ai_socktype = SOCK_STREAM;
-        hints.ai_protocol = IPPROTO_TCP;
-
-        returnResult = getaddrinfo(address, port, &hints, &result);
-        if (returnResult != 0) {
-
-            return false;
-        }
-
-        clientSocket->socket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
-        if (clientSocket->socket == INVALID_SOCKET) {
-            clientSocket->errorCode = CNET_SOCKET_CREATION_ERROR;
-            freeaddrinfo(result);
-
-            return false;
-        }
-
-        returnResult = connect(clientSocket->socket, result->ai_addr, (int) result->ai_addrlen);
-        if (returnResult == SOCKET_ERROR) {
-            clientSocket->errorCode = CNET_SOCKET_CONNECT_ERROR;
-            closesocket(clientSocket->socket);
-            freeaddrinfo(result);
-
-            return false;
-        }
-
-        return true;
+    connectionSocket->socket = accept(serverSocket->socket, NULL, NULL);
+    if (connectionSocket->socket == INVALID_SOCKET) {
+        serverSocket->errorCode = CNET_SOCKET_ACCEPT_ERROR;
+        return false;
     }
 
-    bool CNet_socketAccept(CNet_socket_object* serverSocket, CNet_socket_object* connectionSocket) {
+    return true;
+}
 
-        if(serverSocket->socketType != CNET_SOCKET_SERVER_TYPE) {
-            serverSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
-            return false;
-        }
+bool CNet_socketHost(CNet_socket_object *serverSocket, const char *port) {
 
-        if(!serverSocket || !connectionSocket) {
-            return false;
-        }
-
-        int returnResult;
-
-        returnResult = listen(serverSocket->socket, SOMAXCONN);
-
-        if (returnResult == SOCKET_ERROR) {
-            serverSocket->errorCode = CNET_SOCKET_LISTEN_ERROR;
-            closesocket(serverSocket->socket);
-            return false;
-        }
-
-        connectionSocket->socket = accept(serverSocket->socket, NULL, NULL);
-        if (connectionSocket->socket == INVALID_SOCKET) {
-            serverSocket->errorCode = CNET_SOCKET_ACCEPT_ERROR;
-            return false;
-        }
-
-        return true;
+    if (serverSocket->socketType != CNET_SOCKET_SERVER_TYPE) {
+        serverSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
+        return false;
     }
 
-    bool CNet_socketHost(CNet_socket_object * serverSocket, const char * port) {
+    int returnResult;
 
-        if(serverSocket->socketType != CNET_SOCKET_SERVER_TYPE) {
-            serverSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
-            return false;
-        }
+    struct addrinfo *result = NULL;
+    struct addrinfo hints;
 
-        int returnResult;
+    ZeroMemory(&hints, sizeof(hints));
+    hints.ai_family = AF_INET;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_protocol = IPPROTO_TCP;
+    hints.ai_flags = AI_PASSIVE;
 
-        struct addrinfo *result = NULL;
-        struct addrinfo hints;
+    returnResult = getaddrinfo(NULL, port, &hints, &result);
+    if (returnResult != 0) {
 
-        ZeroMemory(&hints, sizeof(hints));
-        hints.ai_family = AF_INET;
-        hints.ai_socktype = SOCK_STREAM;
-        hints.ai_protocol = IPPROTO_TCP;
-        hints.ai_flags = AI_PASSIVE;
-
-        returnResult = getaddrinfo(NULL, port, &hints, &result);
-        if (returnResult != 0) {
-
-            return false;
-        }
-
-        serverSocket->socket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
-        if (serverSocket->socket == INVALID_SOCKET) {
-            serverSocket->errorCode = CNET_SOCKET_CREATION_ERROR;
-            freeaddrinfo(result);
-            return false;
-        }
-
-        returnResult = bind(serverSocket->socket, result->ai_addr, (int) result->ai_addrlen);
-        if (returnResult == SOCKET_ERROR) {
-            serverSocket->errorCode = CNET_SOCKET_BIND_ERROR;
-            freeaddrinfo(result);
-            return false;
-        }
-        return true;
+        return false;
     }
+
+    serverSocket->socket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
+    if (serverSocket->socket == INVALID_SOCKET) {
+        serverSocket->errorCode = CNET_SOCKET_CREATION_ERROR;
+        freeaddrinfo(result);
+        return false;
+    }
+
+    returnResult = bind(serverSocket->socket, result->ai_addr, (int) result->ai_addrlen);
+    if (returnResult == SOCKET_ERROR) {
+        serverSocket->errorCode = CNET_SOCKET_BIND_ERROR;
+        freeaddrinfo(result);
+        return false;
+    }
+    return true;
+}
 
 #endif
 
-    bool CNet_socketDestroy(CNet_socket_object ** socket) {
-        if(!socket) {
-            return false;
-        } else {
-            free(*socket);
-            return true;
-        }
-    }

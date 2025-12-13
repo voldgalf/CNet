@@ -13,11 +13,12 @@ extern "C" {
 #include <stdlib.h>
 
 #ifdef  __WIN32
+
 #include <winsock2.h>
 #include <windows.h>
 #include <ws2tcpip.h>
-#endif
 
+#endif
 
 typedef unsigned long long CNet_socket;
 
@@ -37,7 +38,6 @@ enum CNET_ERROR_CODES {
 };
 
 enum CNET_SOCKET_TYPES {
-    CNET_SOCKET_NOEXIST_TYPE,
     CNET_SOCKET_SERVER_TYPE,
     CNET_SOCKET_SERVER_CONNECTION_TYPE,
     CNET_SOCKET_CLIENT_TYPE,
@@ -49,7 +49,7 @@ enum CNET_SOCKET_TYPES {
 *
 * Data structure used for the CNetet socket protocol
 */
-typedef struct  {
+typedef struct {
     /*!
     * \brief Contains the specified socket type upon initialization
     */
@@ -72,16 +72,40 @@ typedef struct  {
 
 } CNet_socket_object;
 
+const char *CNet_getError(enum CNET_ERROR_CODES errorCode);
 
-const char * CNet_getError(enum CNET_ERROR_CODES errorCode);
+/*!
+* \brief Destroys socket
+*
+* Destroys socket
+*
+* @param[in,out] socket an instance of `CNet_socket_object`
+*
+* @retval true `socket` is destroyed correctly
+* @retval false An error has occurred
+*/
+bool CNet_socketDestroy(CNet_socket_object **socket);
 
-
-bool complete_shutdown();
-
-
+/*!
+* \brief Quit CNet
+*
+* Deinitialize platform dependent binaries (ex. winsocks for windows)
+*
+*
+* @retval true CNet is deinitialized correctly
+* @retval false An error has occurred
+*/
 bool CNet_quit();
 
-
+/*!
+* \brief Initialize CNet
+*
+* Initializes platform dependent binaries (ex. winsocks for windows)
+*
+*
+* @retval true CNet is initialized correctly
+* @retval false An error has occurred
+*/
 bool CNet_init();
 
 /*!
@@ -95,19 +119,7 @@ bool CNet_init();
 * @retval true socket is allocated and updated
 * @retval false An error has occurred
 */
-bool CNet_socketInit(CNet_socket_object ** socket, enum CNET_SOCKET_TYPES sockType);
-
-/*!
-* \brief Destroys socket
-*
-* Destroys socket
-*
-* @param[in,out] socket an instance of `CNet_socket_object`
-*
-* @retval true `socket` is destroyed correctly
-* @retval false An error has occurred
-*/
-bool CNet_socketDestroy(CNet_socket_object ** socket);
+bool CNet_socketInit(CNet_socket_object **socket, enum CNET_SOCKET_TYPES sockType);
 
 /*!
 * \brief Shuts down socket
@@ -119,19 +131,7 @@ bool CNet_socketDestroy(CNet_socket_object ** socket);
 * @retval true `socket` is shutdown correctly
 * @retval false An error has occurred
 */
-bool CNet_socketShutdown(CNet_socket_object * socket);
-
-/*!
-* \brief Checks if socket is still running
-*
-* Checks if socket is still running
-*
-* @param[in] socket an instance of `CNet_socket_object`
-*
-* @retval true `socket` is active
-* @retval false `socket` is inactive
-*/
-bool CNet_socketActive(CNet_socket_object* socket);
+bool CNet_socketShutdown(CNet_socket_object *socket);
 
 /*!
 * \brief Write to socket
@@ -144,7 +144,7 @@ bool CNet_socketActive(CNet_socket_object* socket);
 * @retval true Bytes from `buffer` are written to `socket`
 * @retval false An error has occurred
 */
-bool CNet_socketSend(CNet_socket_object* socket, char * buffer);
+bool CNet_socketSend(CNet_socket_object *socket, char *buffer);
 
 /*!
 * \brief Read from socket
@@ -157,7 +157,7 @@ bool CNet_socketSend(CNet_socket_object* socket, char * buffer);
 * @retval true Read bytes from `socket` are written to `buffer`
 * @retval false An error has occurred
 */
-bool CNet_socketRecv(CNet_socket_object* socket, char * buffer);
+bool CNet_socketRecv(CNet_socket_object *socket, char *buffer);
 
 /*!
 * \brief Connect to a specified server
@@ -171,7 +171,7 @@ bool CNet_socketRecv(CNet_socket_object* socket, char * buffer);
 * @retval true `socket` is now connected to server
 * @retval false An error has occurred
 */
-bool CNet_socketConnect(CNet_socket_object* socket, const char * address, const char * port);
+bool CNet_socketConnect(CNet_socket_object *socket, const char *address, const char *port);
 
 /*!
 * \brief Writes newly connected connection to socket
@@ -184,7 +184,7 @@ bool CNet_socketConnect(CNet_socket_object* socket, const char * address, const 
 * @retval true `connectionSocket` is now written with new connection from `serverSocket`
 * @retval false An error has occurred
 */
-bool CNet_socketAccept(CNet_socket_object* serverSocket, CNet_socket_object* connectionSocket);
+bool CNet_socketAccept(CNet_socket_object *serverSocket, CNet_socket_object *connectionSocket);
 
 /*!
 * \brief Hosts server given socket
@@ -197,7 +197,7 @@ bool CNet_socketAccept(CNet_socket_object* serverSocket, CNet_socket_object* con
 * @retval true Server is now being hosted on `port` through `socket`
 * @retval false An error has occurred
 */
-bool CNet_socketHost(CNet_socket_object * serverSocket, const char * port);
+bool CNet_socketHost(CNet_socket_object *serverSocket, const char *port);
 
 #ifdef __cplusplus
 }
