@@ -244,6 +244,7 @@ bool CNet_socketShutdown(CNet_socket_instance *socket) {
 }
 
 bool CNet_socketSend(CNet_socket_instance *socket, char *buffer) {
+
     if (socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
         socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
         return false;
