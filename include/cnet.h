@@ -20,8 +20,6 @@ extern "C" {
 #include <ws2tcpip.h>
 
 #elif __linux__
-#include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
