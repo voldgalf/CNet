@@ -62,7 +62,7 @@ int main(void) {
     }
     printf(" SUCCESS\n");
 
-    const char * message = "Hello C";
+    char * message = "Hello C";
 
     printf("Attempting to send message ... ");
     if (!CNet_socketSend(clientSocket, message)) {
