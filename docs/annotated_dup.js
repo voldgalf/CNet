@@ -1,5 +1,5 @@
 var annotated_dup =
 [
-    [ "CNet_server", "struct_c_net__server.html", "struct_c_net__server" ],
+    [ "CNet_serverStructure", "struct_c_net__server_structure.html", "struct_c_net__server_structure" ],
     [ "CNet_socket_instance", "struct_c_net__socket__instance.html", "struct_c_net__socket__instance" ]
 ];

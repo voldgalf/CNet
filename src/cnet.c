@@ -130,7 +130,7 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer) {
     }
 }
 
-bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_server request) {
+bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_serverStructure request) {
 
     if (clientSocket->socketType != CNET_SOCKET_CLIENT_TYPE) {
         clientSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
@@ -292,7 +292,7 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer) {
     }
 }
 
-bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_server request) {
+bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_serverStructure request) {
 
     if (clientSocket->socketType != CNET_SOCKET_CLIENT_TYPE) {
         clientSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;

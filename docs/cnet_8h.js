@@ -1,7 +1,7 @@
 var cnet_8h =
 [
     [ "CNet_socket_instance", "struct_c_net__socket__instance.html", "struct_c_net__socket__instance" ],
-    [ "CNet_server", "struct_c_net__server.html", "struct_c_net__server" ],
+    [ "CNet_serverStructure", "struct_c_net__server_structure.html", "struct_c_net__server_structure" ],
     [ "CNet_socket", "cnet_8h.html#ae371c5587bd47c0a07f82b476c9f10af", null ],
     [ "CNET_ERROR_CODES", "cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552", [
       [ "CNET_SOCKET_INIT_ERROR", "cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a2c1a3de3d6ae25a79bed55bd17829dbf", null ],
@@ -26,7 +26,7 @@ var cnet_8h =
     [ "CNet_quit", "cnet_8h.html#ab9297bf7e174b10a4f68eb4121e6f744", null ],
     [ "CNet_socketAccept", "cnet_8h.html#abe2a8ac4eb21104965ee04cf820a2a42", null ],
     [ "CNet_socketClose", "cnet_8h.html#a70758011fc9dcd67ed0b987cbce4226d", null ],
-    [ "CNet_socketConnect", "cnet_8h.html#a541745eaf8d782ed90a3e0a45d8ed05b", null ],
+    [ "CNet_socketConnect", "cnet_8h.html#ae7d444295e55e98122d0a063760a990f", null ],
     [ "CNet_socketDestroy", "cnet_8h.html#a9f7d32d1b3d9be0d788dd5e7b4874926", null ],
     [ "CNet_socketHost", "cnet_8h.html#a27a5c6a8655caa267c23492b9877f3bc", null ],
     [ "CNet_socketInit", "cnet_8h.html#ab7694668ce743250940f9992ffa5c70f", null ],

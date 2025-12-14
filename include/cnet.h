@@ -85,7 +85,7 @@ enum CNET_ERROR_CODES errorCode;
 typedef struct {
 const char * addr;
 const char * port;
-} CNet_server;
+} CNet_serverStructure;
 
 const char *CNet_getError(enum CNET_ERROR_CODES errorCode);
 
@@ -192,12 +192,12 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer);
 * Connect to server using `address` and `port` and writes that socket to `socket`
 *
 * \param[in,out] socket an instance of `CNet_socket_instance`
-* \param[in] request an instance of `CNet_server`
+* \param[in] request an instance of `CNet_serverStructure`
 *
 * \retval true `socket` is now connected to server
 * \retval false An error has occurred
 */
-bool CNet_socketConnect(CNet_socket_instance *socket, CNet_server request);
+bool CNet_socketConnect(CNet_socket_instance *socket, CNet_serverStructure request);
 
 /*!
 * \brief Writes newly connected connection to socket

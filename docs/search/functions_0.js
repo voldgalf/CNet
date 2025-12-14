@@ -5,7 +5,7 @@ var searchData=
   ['cnet_5fquit_2',['CNet_quit',['../cnet_8h.html#ab9297bf7e174b10a4f68eb4121e6f744',1,'cnet.h']]],
   ['cnet_5fsocketaccept_3',['CNet_socketAccept',['../cnet_8h.html#abe2a8ac4eb21104965ee04cf820a2a42',1,'cnet.h']]],
   ['cnet_5fsocketclose_4',['CNet_socketClose',['../cnet_8h.html#a70758011fc9dcd67ed0b987cbce4226d',1,'cnet.h']]],
-  ['cnet_5fsocketconnect_5',['CNet_socketConnect',['../cnet_8h.html#a541745eaf8d782ed90a3e0a45d8ed05b',1,'cnet.h']]],
+  ['cnet_5fsocketconnect_5',['CNet_socketConnect',['../cnet_8h.html#ae7d444295e55e98122d0a063760a990f',1,'cnet.h']]],
   ['cnet_5fsocketdestroy_6',['CNet_socketDestroy',['../cnet_8h.html#a9f7d32d1b3d9be0d788dd5e7b4874926',1,'cnet.h']]],
   ['cnet_5fsockethost_7',['CNet_socketHost',['../cnet_8h.html#a27a5c6a8655caa267c23492b9877f3bc',1,'cnet.h']]],
   ['cnet_5fsocketinit_8',['CNet_socketInit',['../cnet_8h.html#ab7694668ce743250940f9992ffa5c70f',1,'cnet.h']]],
