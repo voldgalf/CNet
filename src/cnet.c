@@ -51,13 +51,10 @@ bool CNet_socketDestroy(CNet_socket_instance **socket) {
 }
 
 bool CNet_socketInit(CNet_socket_instance **socket, enum CNET_SOCKET_TYPES sockType) {
-    if(!socket) {
-        *socket = malloc(sizeof(CNet_socket));
-        (*socket)->socketType = sockType;
-        (*socket)->socket = -1;
-        return true;
-    }
-    return false;
+    *socket = malloc(sizeof(CNet_socket));
+    (*socket)->socketType = sockType;
+    (*socket)->socket = -1;
+    return true;
 }
 
 
@@ -237,7 +234,6 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port) {
     }
     return true;
 }
-
 
 
 #elif defined(__linux__)

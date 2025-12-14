@@ -52,19 +52,26 @@ int main(void) {
     }
 
     CNet_serverStructure serverStructure;
-    serverStructure.addr = "10.0.0.220";
+    serverStructure.addr = "127.0.0.1";
     serverStructure.port = "1234";
-    printf("Attempting to connect to %s:%s\n",serverStructure.addr, serverStructure.port);
+    printf("Attempting to connect to server ... ");
 
     if (!CNet_socketConnect(clientSocket, serverStructure)) {
-        printf("Error: %s\n", CNet_getError(clientSocket->errorCode));
+        printf("ERROR\n\t%s\n", CNet_getError(clientSocket->errorCode));
+        return -1;
+    }
+    printf(" SUCCESS\n");
+
+    const char * message = "Hello C";
+
+    printf("Attempting to send message ... ");
+    if (!CNet_socketSend(clientSocket, message)) {
+        printf("ERROR\n\t%s\n", CNet_getError(clientSocket->errorCode));
+        return -1;
     }
 
-    printf("Connected!\n");
+    printf(" SUCCESS\n");
 
-    if (!CNet_socketSend(clientSocket, "Hello C")) {
-    printf("Error: %s\n", CNet_getError(clientSocket->errorCode));
-    }
 
     CNet_socketClose(&clientSocket);
 
