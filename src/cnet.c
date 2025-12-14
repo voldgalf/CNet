@@ -51,11 +51,15 @@ bool CNet_socketDestroy(CNet_socket_instance **socket) {
 }
 
 bool CNet_socketInit(CNet_socket_instance **socket, enum CNET_SOCKET_TYPES sockType) {
-    *socket = malloc(sizeof(CNet_socket));
-    (*socket)->socketType = sockType;
-    (*socket)->socket = -1;
-    return true;
+    if(!socket) {
+        *socket = malloc(sizeof(CNet_socket));
+        (*socket)->socketType = sockType;
+        (*socket)->socket = -1;
+        return true;
+    }
+    return false;
 }
+
 
 #if defined(_WIN32)
 
@@ -76,9 +80,14 @@ bool CNet_init() {
 }
 
 bool CNet_socketShutdown(CNet_socket_instance *socket) {
-    shutdown(socket->socket, SD_SEND);
-    closesocket(socket->socket);
-    return true;
+    if(socket->socket != - 1) {
+        shutdown(socket->socket, SD_SEND);
+        closesocket(socket->socket);
+        socket->socket = -1;
+        socket->socketType = CNET_SOCKET_UNINIT_TYPE;
+        return true;
+    }
+    return false;
 }
 
 bool CNet_socketSend(CNet_socket_instance *socket, char *buffer) {
@@ -229,6 +238,8 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port) {
     return true;
 }
 
+
+
 #elif defined(__linux__)
 
 bool CNet_quit() {
@@ -377,3 +388,9 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port) {
     return true;
 }
 #endif
+
+bool CNet_socketClose(CNet_socket_instance ** socket) {
+    CNet_socketShutdown(*socket);
+    CNet_socketDestroy(socket);
+    return true;
+}

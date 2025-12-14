@@ -66,8 +66,7 @@ int main(void) {
     printf("Error: %s\n", CNet_getError(clientSocket->errorCode));
     }
 
-    CNet_socketShutdown(clientSocket);
-    CNet_socketDestroy(&clientSocket);
+    CNet_socketClose(&clientSocket);
 
     CNet_quit();
 

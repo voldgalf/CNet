@@ -12,5 +12,6 @@ var searchData=
   ['cnet_5fsocket_5fread_5ferror_9',['CNET_SOCKET_READ_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a475884da6eab4835d57c81d7ef30dfea',1,'cnet.h']]],
   ['cnet_5fsocket_5fserver_5fconnection_5ftype_10',['CNET_SOCKET_SERVER_CONNECTION_TYPE',['../cnet_8h.html#a9d5545e8bbddede9bcb00b08829a73efa6bff570db43acdf0566189ab3cbe7ba3',1,'cnet.h']]],
   ['cnet_5fsocket_5fserver_5ftype_11',['CNET_SOCKET_SERVER_TYPE',['../cnet_8h.html#a9d5545e8bbddede9bcb00b08829a73efa67c29cca0a15d2381dd6fc2aadf894fe',1,'cnet.h']]],
-  ['cnet_5fsocket_5fwrite_5ferror_12',['CNET_SOCKET_WRITE_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a576a4d4b395e401204e2aee4e3b66c0b',1,'cnet.h']]]
+  ['cnet_5fsocket_5funinit_5ftype_12',['CNET_SOCKET_UNINIT_TYPE',['../cnet_8h.html#a9d5545e8bbddede9bcb00b08829a73efad81603eaca42faeca810864668b0337e',1,'cnet.h']]],
+  ['cnet_5fsocket_5fwrite_5ferror_13',['CNET_SOCKET_WRITE_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a576a4d4b395e401204e2aee4e3b66c0b',1,'cnet.h']]]
 ];
