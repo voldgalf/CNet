@@ -5,6 +5,26 @@
 #include "../include/cnet.h"
 
 
+
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+#ifdef  __WIN32
+#include <winsock2.h>
+#include <windows.h>
+#include <ws2tcpip.h>
+
+#elif __linux__
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#endif
+
 #if defined(_WIN32)
 
 bool CNet_quit() {
@@ -124,11 +144,7 @@ bool CNet_socketAccept(CNet_socket_instance *serverSocket, CNet_socket_instance 
         return false;
     }
 
-    int returnResult;
-
-    returnResult = listen(serverSocket->socket, SOMAXCONN);
-
-    if (returnResult == SOCKET_ERROR) {
+    if (listen(serverSocket->socket, SOMAXCONN) == SOCKET_ERROR) {
         serverSocket->errorCode = CNET_SOCKET_LISTEN_ERROR;
         closesocket(serverSocket->socket);
         return false;

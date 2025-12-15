@@ -1,5 +1,5 @@
 //
-// Created by brick on 12/10/2025.
+// Created by Voldgalf 12-12-2025
 //
 
 #pragma once
@@ -7,24 +7,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdint.h>
 
-#ifdef  __WIN32
-#include <winsock2.h>
-#include <windows.h>
-#include <ws2tcpip.h>
-#elif __linux__
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#endif
 
 typedef unsigned long long CNet_socket;
 
@@ -190,13 +175,13 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer, int32_t bufferS
 *
 * Connect to server using `address` and `port` and writes that socket to `socket`
 *
-* \param[in,out] socket an instance of `CNet_socket_instance`
+* \param[in,out] clientSocket an instance of `CNet_socket_instance`
 * \param[in] request an instance of `CNet_serverStructure`
 *
 * \retval true `socket` is now connected to server
 * \retval false An error has occurred
 */
-bool CNet_socketConnect(CNet_socket_instance *socket, CNet_serverStructure request);
+bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_serverStructure request);
 
 /*!
 * \brief Writes newly connected connection to socket
@@ -216,7 +201,7 @@ bool CNet_socketAccept(CNet_socket_instance *serverSocket, CNet_socket_instance 
 *
 * Given a `CNet_socket_instance` instance and a port: hosts a server
 *
-* \param[in,out] socket an instance of `CNet_socket_instance`
+* \param[in,out] serverSocket an instance of `CNet_socket_instance`
 * \param[in] port a char pointer
 *
 * \retval true Server is now being hosted on `port` through `socket`
