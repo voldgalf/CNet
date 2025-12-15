@@ -8,11 +8,11 @@
 extern "C" {
 #endif
 
-#include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <stdbool.h>
 
 #ifdef  __WIN32
 #include <winsock2.h>
