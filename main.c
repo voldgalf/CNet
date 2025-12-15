@@ -5,7 +5,7 @@
 int main(void) {
 
     CNet_init();
-    /*
+
     CNet_socket_instance * myServer = NULL;
     if(!CNet_socketInit(&myServer, CNET_SOCKET_SERVER_TYPE)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
@@ -20,6 +20,10 @@ int main(void) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
     }
 
+    printf("*----------------------------------*\n");
+    printf(" SERVER RUNNING AT 127.0.0.1:1234   \n");
+    printf("*----------------------------------*\n");
+
     printf("Waiting for connection...\n");
 
     char buffer[512];
@@ -27,7 +31,7 @@ int main(void) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
     }
 
-    printf("Connection found!\n");
+    printf("*-- New Connection --*\n");
 
     if (!CNet_socketRecv(myConnection, buffer)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
@@ -38,13 +42,11 @@ int main(void) {
     if(!CNet_socketSend(myConnection, buffer)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
     }
-    CNet_socketShutdown(myConnection);
-    CNet_socketShutdown(myServer);
 
-    CNet_socketDestroy(&myServer);
-    CNet_socketDestroy(&myConnection);
-    */
+    CNet_socketClose(&myServer);
+    CNet_socketClose(&myConnection);
 
+    /*
     CNet_socket_instance *clientSocket = NULL;
 
     if (!CNet_socketInit(&clientSocket, CNET_SOCKET_CLIENT_TYPE)) {
@@ -60,6 +62,7 @@ int main(void) {
         printf("ERROR\n\t%s\n", CNet_getError(clientSocket->errorCode));
         return -1;
     }
+
     printf(" SUCCESS\n");
 
     char * message = "Hello C";
@@ -72,9 +75,8 @@ int main(void) {
 
     printf(" SUCCESS\n");
 
-
     CNet_socketClose(&clientSocket);
-
+    */
     CNet_quit();
 
     return 0;

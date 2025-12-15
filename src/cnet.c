@@ -4,62 +4,8 @@
 
 #include "../include/cnet.h"
 
-const char *CNet_getError(enum CNET_ERROR_CODES errorCode) {
-    const char *message = "";
-    switch (errorCode) {
-        case CNET_SOCKET_INIT_ERROR:
-            message = "Unable to initialize socket";
-            break;
-        case CNET_SOCKET_WRITE_ERROR:
-            message = "Unable to write to socket";
-            break;
-        case CNET_SOCKET_CREATION_ERROR:
-            message = "Unable to create socket";
-            break;
-        case CNET_SOCKET_READ_ERROR:
-            message = "Unable to read from socket";
-            break;
-        case CNET_SOCKET_BIND_ERROR:
-            message = "Unable to bind to socket";
-            break;
-        case CNET_SOCKET_LISTEN_ERROR:
-            message = "Unable to listen to socket";
-            break;
-        case CNET_SOCKET_ALLOCATE_ERROR:
-            message = "Unable to allocate socket";
-            break;
-        case CNET_SOCKET_CONNECT_ERROR:
-            message = "Unable to connect to server via socket";
-            break;
-        case CNET_SOCKET_ACCEPT_ERROR:
-            message = "Unable to accept new connection from socket";
-            break;
-        case CNET_SOCKET_INCORRECT_TYPE_ERROR:
-            message = "Incorrect initialization socket type for requested function";
-            break;
-    }
-    return message;
-}
-
-bool CNet_socketDestroy(CNet_socket_instance **socket) {
-    if (!socket) {
-        return false;
-    } else {
-        free(*socket);
-        return true;
-    }
-}
-
-bool CNet_socketInit(CNet_socket_instance **socket, enum CNET_SOCKET_TYPES sockType) {
-    *socket = malloc(sizeof(CNet_socket));
-    (*socket)->socketType = sockType;
-    (*socket)->socket = -1;
-    return true;
-}
-
 
 #if defined(_WIN32)
-
 bool CNet_quit() {
     WSACleanup();
     return true;
@@ -235,9 +181,7 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port) {
     return true;
 }
 
-
 #elif defined(__linux__)
-
 bool CNet_quit() {
     return true;
 }
@@ -388,5 +332,58 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port) {
 bool CNet_socketClose(CNet_socket_instance ** socket) {
     CNet_socketShutdown(*socket);
     CNet_socketDestroy(socket);
+    return true;
+}
+
+const char *CNet_getError(enum CNET_ERROR_CODES errorCode) {
+    const char *message = "";
+    switch (errorCode) {
+        case CNET_SOCKET_INIT_ERROR:
+            message = "Unable to initialize socket";
+            break;
+        case CNET_SOCKET_WRITE_ERROR:
+            message = "Unable to write to socket";
+            break;
+        case CNET_SOCKET_CREATION_ERROR:
+            message = "Unable to create socket";
+            break;
+        case CNET_SOCKET_READ_ERROR:
+            message = "Unable to read from socket";
+            break;
+        case CNET_SOCKET_BIND_ERROR:
+            message = "Unable to bind to socket";
+            break;
+        case CNET_SOCKET_LISTEN_ERROR:
+            message = "Unable to listen to socket";
+            break;
+        case CNET_SOCKET_ALLOCATE_ERROR:
+            message = "Unable to allocate socket";
+            break;
+        case CNET_SOCKET_CONNECT_ERROR:
+            message = "Unable to connect to server via socket";
+            break;
+        case CNET_SOCKET_ACCEPT_ERROR:
+            message = "Unable to accept new connection from socket";
+            break;
+        case CNET_SOCKET_INCORRECT_TYPE_ERROR:
+            message = "Incorrect initialization socket type for requested function";
+            break;
+    }
+    return message;
+}
+
+bool CNet_socketDestroy(CNet_socket_instance **socket) {
+    if (!socket) {
+        return false;
+    } else {
+        free(*socket);
+        return true;
+    }
+}
+
+bool CNet_socketInit(CNet_socket_instance **socket, enum CNET_SOCKET_TYPES sockType) {
+    *socket = malloc(sizeof(CNet_socket));
+    (*socket)->socketType = sockType;
+    (*socket)->socket = -1;
     return true;
 }
