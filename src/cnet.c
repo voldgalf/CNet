@@ -85,14 +85,13 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer, int32_t bufferS
     if (socket->socket == INVALID_SOCKET) {
         return false;
     }
-    int returnResult = 0;
-    returnResult = recv(socket->socket, buffer, bufferSize, 0);
-    if (returnResult > 0) {
+
+    if (recv(socket->socket, buffer, bufferSize, 0) > 0) {
         return true;
-    } else {
-        socket->errorCode = CNET_SOCKET_READ_ERROR;
-        return false;
     }
+
+    socket->errorCode = CNET_SOCKET_READ_ERROR;
+    return false;
 }
 
 bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_serverStructure request) {
@@ -111,8 +110,7 @@ bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_serverStructure
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_protocol = IPPROTO_TCP;
 
-    returnResult = getaddrinfo(request.addr, request.port, &hints, &result);
-    if (returnResult != 0) {
+    if (getaddrinfo(request.addr, request.port, &hints, &result) != 0) {
 
         return false;
     }
@@ -125,8 +123,7 @@ bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_serverStructure
         return false;
     }
 
-    returnResult = connect(clientSocket->socket, result->ai_addr, (int) result->ai_addrlen);
-    if (returnResult == SOCKET_ERROR) {
+    if (connect(clientSocket->socket, result->ai_addr, (int) result->ai_addrlen) == SOCKET_ERROR) {
         clientSocket->errorCode = CNET_SOCKET_CONNECT_ERROR;
         closesocket(clientSocket->socket);
         freeaddrinfo(result);
@@ -166,8 +163,6 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port) {
         return false;
     }
 
-    int returnResult;
-
     struct addrinfo *result = NULL;
     struct addrinfo hints;
 
@@ -177,8 +172,7 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port) {
     hints.ai_protocol = IPPROTO_TCP;
     hints.ai_flags = AI_PASSIVE;
 
-    returnResult = getaddrinfo(NULL, port, &hints, &result);
-    if (returnResult != 0) {
+    if (getaddrinfo(NULL, port, &hints, &result) != 0) {
 
         return false;
     }
@@ -190,8 +184,7 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port) {
         return false;
     }
 
-    returnResult = bind(serverSocket->socket, result->ai_addr, (int) result->ai_addrlen);
-    if (returnResult == SOCKET_ERROR) {
+    if (bind(serverSocket->socket, result->ai_addr, (int) result->ai_addrlen) == SOCKET_ERROR) {
         serverSocket->errorCode = CNET_SOCKET_BIND_ERROR;
         freeaddrinfo(result);
         return false;
