@@ -33,7 +33,7 @@ int main(void) {
 
     printf("*-- New Connection --*\n");
 
-    if (!CNet_socketRecv(myConnection, buffer)) {
+    if (!CNet_socketRecv(myConnection, buffer, 512)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
     }
 

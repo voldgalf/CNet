@@ -29,7 +29,7 @@ var searchData=
   ['cnet_5fsocketdestroy_26',['CNet_socketDestroy',['../cnet_8h.html#a9f7d32d1b3d9be0d788dd5e7b4874926',1,'cnet.h']]],
   ['cnet_5fsockethost_27',['CNet_socketHost',['../cnet_8h.html#a27a5c6a8655caa267c23492b9877f3bc',1,'cnet.h']]],
   ['cnet_5fsocketinit_28',['CNet_socketInit',['../cnet_8h.html#ab7694668ce743250940f9992ffa5c70f',1,'cnet.h']]],
-  ['cnet_5fsocketrecv_29',['CNet_socketRecv',['../cnet_8h.html#acf22393aacfe226244926502c9ed77c6',1,'cnet.h']]],
+  ['cnet_5fsocketrecv_29',['CNet_socketRecv',['../cnet_8h.html#a25619219591a6cbb9eb1b3bb0fd7a276',1,'cnet.h']]],
   ['cnet_5fsocketsend_30',['CNet_socketSend',['../cnet_8h.html#a98d9a99ff01439fba05e6cb3ded5f239',1,'cnet.h']]],
   ['cnet_5fsocketshutdown_31',['CNet_socketShutdown',['../cnet_8h.html#aaa79d1b8cd99c6e53e45c355e8b1bdf0',1,'cnet.h']]]
 ];

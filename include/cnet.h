@@ -12,13 +12,12 @@ extern "C" {
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
 #ifdef  __WIN32
-
 #include <winsock2.h>
 #include <windows.h>
 #include <ws2tcpip.h>
-
 #elif __linux__
 #include <unistd.h>
 #include <sys/types.h>
@@ -84,6 +83,7 @@ typedef struct {
 const char * addr;
 const char * port;
 } CNet_serverStructure;
+
 
 const char *CNet_getError(enum CNET_ERROR_CODES errorCode);
 
@@ -178,11 +178,12 @@ bool CNet_socketClose(CNet_socket_instance ** socket);
 *
 * \param[in] socket an instance of `CNet_socket_instance`
 * \param[in,out] buffer a char pointer
+* \param[in] bufferSize specified buffer size to receive
 *
 * \retval true Read bytes from `socket` are written to `buffer`
 * \retval false An error has occurred
 */
-bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer);
+bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer, int32_t bufferSize);
 
 /*!
 * \brief Connect to a specified server

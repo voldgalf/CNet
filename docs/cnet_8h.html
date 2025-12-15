@@ -19,7 +19,6 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -104,6 +103,7 @@ $(function(){initNavTree('cnet_8h.html',''); initResizable(); });
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
 </div>
 <p><a href="cnet_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -170,9 +170,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a70758011fc9dcd67ed0b987cbce4226d" id="r_a70758011fc9dcd67ed0b987cbce4226d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70758011fc9dcd67ed0b987cbce4226d">CNet_socketClose</a> (<a class="el" href="struct_c_net__socket__instance.html">CNet_socket_instance</a> **socket)</td></tr>
 <tr class="memdesc:a70758011fc9dcd67ed0b987cbce4226d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close socket.  <br /></td></tr>
 <tr class="separator:a70758011fc9dcd67ed0b987cbce4226d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf22393aacfe226244926502c9ed77c6" id="r_acf22393aacfe226244926502c9ed77c6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf22393aacfe226244926502c9ed77c6">CNet_socketRecv</a> (<a class="el" href="struct_c_net__socket__instance.html">CNet_socket_instance</a> *socket, char *buffer)</td></tr>
-<tr class="memdesc:acf22393aacfe226244926502c9ed77c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read from socket.  <br /></td></tr>
-<tr class="separator:acf22393aacfe226244926502c9ed77c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25619219591a6cbb9eb1b3bb0fd7a276" id="r_a25619219591a6cbb9eb1b3bb0fd7a276"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25619219591a6cbb9eb1b3bb0fd7a276">CNet_socketRecv</a> (<a class="el" href="struct_c_net__socket__instance.html">CNet_socket_instance</a> *socket, char *buffer, int32_t bufferSize)</td></tr>
+<tr class="memdesc:a25619219591a6cbb9eb1b3bb0fd7a276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read from socket.  <br /></td></tr>
+<tr class="separator:a25619219591a6cbb9eb1b3bb0fd7a276"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7d444295e55e98122d0a063760a990f" id="r_ae7d444295e55e98122d0a063760a990f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7d444295e55e98122d0a063760a990f">CNet_socketConnect</a> (<a class="el" href="struct_c_net__socket__instance.html">CNet_socket_instance</a> *socket, <a class="el" href="struct_c_net__server_structure.html">CNet_serverStructure</a> request)</td></tr>
 <tr class="memdesc:ae7d444295e55e98122d0a063760a990f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect to a specified server.  <br /></td></tr>
 <tr class="separator:ae7d444295e55e98122d0a063760a990f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -535,8 +535,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="acf22393aacfe226244926502c9ed77c6" name="acf22393aacfe226244926502c9ed77c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf22393aacfe226244926502c9ed77c6">&#9670;&#160;</a></span>CNet_socketRecv()</h2>
+<a id="a25619219591a6cbb9eb1b3bb0fd7a276" name="a25619219591a6cbb9eb1b3bb0fd7a276"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25619219591a6cbb9eb1b3bb0fd7a276">&#9670;&#160;</a></span>CNet_socketRecv()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -549,7 +549,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>&#160;)</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>buffer</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t</td>          <td class="paramname"><span class="paramname"><em>bufferSize</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -559,7 +564,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">socket</td><td>an instance of <code><a class="el" href="struct_c_net__socket__instance.html" title="data structure used throughout this library">CNet_socket_instance</a></code> </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">buffer</td><td>a char pointer</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">buffer</td><td>a char pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bufferSize</td><td>specified buffer size to receive</td></tr>
   </table>
   </dd>
 </dl>

@@ -13,6 +13,7 @@ bool CNet_quit() {
 }
 
 bool CNet_init() {
+
     WSADATA wsaData;
     int returnResult = 0;
     returnResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
@@ -52,7 +53,7 @@ bool CNet_socketSend(CNet_socket_instance *socket, char *buffer) {
 
 }
 
-bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer) {
+bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer, int32_t bufferSize) {
 
     if (socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
         socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
@@ -65,7 +66,7 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer) {
         return false;
     }
     int returnResult = 0;
-    returnResult = recv(socket->socket, buffer, 512, 0);
+    returnResult = recv(socket->socket, buffer, bufferSize, 0);
     if (returnResult > 0) {
         return true;
     } else {
