@@ -6,6 +6,7 @@
 
 
 #if defined(_WIN32)
+
 bool CNet_quit() {
     WSACleanup();
     return true;
