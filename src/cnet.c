@@ -4,8 +4,6 @@
 
 #include "../include/cnet.h"
 
-
-
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
@@ -210,14 +208,14 @@ bool CNet_socketShutdown(CNet_socket_instance *socket) {
     return true;
 }
 
-bool CNet_socketSend(CNet_socket_instance *socket, char *buffer) {
+bool CNet_socketSend(CNet_socket_instance *socket, char *buffer, int32_t bufferSize) {
 
     if (socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
         socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
         return false;
     }
 
-    if (send(socket->socket, buffer, (int) strlen(buffer), 0) == -1) {
+    if (send(socket->socket, buffer, bufferSize, 0) == -1) {
         socket->errorCode = CNET_SOCKET_WRITE_ERROR;
         return false;
     }
@@ -225,7 +223,7 @@ bool CNet_socketSend(CNet_socket_instance *socket, char *buffer) {
     return true;
 }
 
-bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer) {
+bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer, int32_t bufferSize) {
 
     if (socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
         socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
@@ -234,7 +232,7 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer) {
 
     memset(buffer, 0, 512);
 
-    if (recv(socket->socket, buffer, 512, 0) > 0) {
+    if (recv(socket->socket, buffer, bufferSize, 0) > 0) {
         return true;
     } else {
         socket->errorCode = CNET_SOCKET_READ_ERROR;
