@@ -240,7 +240,7 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer, int32_t bufferS
     }
 }
 
-bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_serverStructure request) {
+bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_server_structure request) {
 
     if (clientSocket->socketType != CNET_SOCKET_CLIENT_TYPE) {
         clientSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;

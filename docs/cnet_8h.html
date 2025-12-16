@@ -112,7 +112,7 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_net__socket__instance.html">CNet_socket_instance</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">data structure used throughout this library  <a href="struct_c_net__socket__instance.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_net__server_structure.html">CNet_serverStructure</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_net__server_structure.html">CNet_server_structure</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -173,7 +173,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a25619219591a6cbb9eb1b3bb0fd7a276" id="r_a25619219591a6cbb9eb1b3bb0fd7a276"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25619219591a6cbb9eb1b3bb0fd7a276">CNet_socketRecv</a> (<a class="el" href="struct_c_net__socket__instance.html">CNet_socket_instance</a> *socket, char *buffer, int32_t bufferSize)</td></tr>
 <tr class="memdesc:a25619219591a6cbb9eb1b3bb0fd7a276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read from socket.  <br /></td></tr>
 <tr class="separator:a25619219591a6cbb9eb1b3bb0fd7a276"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7d444295e55e98122d0a063760a990f" id="r_ae7d444295e55e98122d0a063760a990f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7d444295e55e98122d0a063760a990f">CNet_socketConnect</a> (<a class="el" href="struct_c_net__socket__instance.html">CNet_socket_instance</a> *socket, <a class="el" href="struct_c_net__server_structure.html">CNet_serverStructure</a> request)</td></tr>
+<tr class="memitem:ae7d444295e55e98122d0a063760a990f" id="r_ae7d444295e55e98122d0a063760a990f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7d444295e55e98122d0a063760a990f">CNet_socketConnect</a> (<a class="el" href="struct_c_net__socket__instance.html">CNet_socket_instance</a> *socket, <a class="el" href="struct_c_net__server_structure.html">CNet_server_structure</a> request)</td></tr>
 <tr class="memdesc:ae7d444295e55e98122d0a063760a990f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect to a specified server.  <br /></td></tr>
 <tr class="separator:ae7d444295e55e98122d0a063760a990f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe2a8ac4eb21104965ee04cf820a2a42" id="r_abe2a8ac4eb21104965ee04cf820a2a42"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe2a8ac4eb21104965ee04cf820a2a42">CNet_socketAccept</a> (<a class="el" href="struct_c_net__socket__instance.html">CNet_socket_instance</a> *serverSocket, <a class="el" href="struct_c_net__socket__instance.html">CNet_socket_instance</a> *connectionSocket)</td></tr>
@@ -402,7 +402,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_c_net__server_structure.html">CNet_serverStructure</a></td>          <td class="paramname"><span class="paramname"><em>request</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="struct_c_net__server_structure.html">CNet_server_structure</a></td>          <td class="paramname"><span class="paramname"><em>request</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -412,7 +412,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">socket</td><td>an instance of <code><a class="el" href="struct_c_net__socket__instance.html" title="data structure used throughout this library">CNet_socket_instance</a></code> </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">request</td><td>an instance of <code><a class="el" href="struct_c_net__server_structure.html">CNet_serverStructure</a></code></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">request</td><td>an instance of <code><a class="el" href="struct_c_net__server_structure.html">CNet_server_structure</a></code></td></tr>
   </table>
   </dd>
 </dl>

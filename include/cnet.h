@@ -177,7 +177,7 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer, int32_t bufferS
 * Connect to server using `address` and `port` and writes that socket to `socket`
 *
 * \param[in,out] clientSocket an instance of `CNet_socket_instance`
-* \param[in] request an instance of `CNet_serverStructure`
+* \param[in] request an instance of `CNet_server_structure`
 *
 * \retval true `socket` is now connected to server
 * \retval false An error has occurred
@@ -203,7 +203,7 @@ bool CNet_socketAccept(CNet_socket_instance *serverSocket, CNet_socket_instance 
 * Given a `CNet_socket_instance` instance and a port: hosts a server
 *
 * \param[in,out] serverSocket an instance of `CNet_socket_instance`
-* \param[in] request an instance of `CNet_serverStructure`
+* \param[in] request an instance of `CNet_server_structure`
 *
 * \retval true Server is now being hosted on `port` through `socket`
 * \retval false An error has occurred

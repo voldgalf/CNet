@@ -1,7 +1,7 @@
 var cnet_8h =
 [
     [ "CNet_socket_instance", "struct_c_net__socket__instance.html", "struct_c_net__socket__instance" ],
-    [ "CNet_serverStructure", "struct_c_net__server_structure.html", "struct_c_net__server_structure" ],
+    [ "CNet_server_structure", "struct_c_net__server_structure.html", "struct_c_net__server_structure" ],
     [ "CNet_socket", "cnet_8h.html#ae371c5587bd47c0a07f82b476c9f10af", null ],
     [ "CNET_ERROR_CODES", "cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552", [
       [ "CNET_SOCKET_INIT_ERROR", "cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a2c1a3de3d6ae25a79bed55bd17829dbf", null ],

@@ -57,7 +57,7 @@ int main(void) {
         printf("Error: %s\n", CNet_getError(clientSocket->errorCode));
     }
 
-    CNet_serverStructure serverStructure;
+    CNet_server_structure serverStructure;
     serverStructure.addr = "127.0.0.1";
     serverStructure.port = "1234";
     printf("Attempting to connect to server ... ");

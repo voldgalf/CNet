@@ -5,7 +5,7 @@ var searchData=
   ['cnet_5fgeterror_2',['CNet_getError',['../cnet_8h.html#a95a69fa796613c1b4a224e87f8832029',1,'cnet.h']]],
   ['cnet_5finit_3',['CNet_init',['../cnet_8h.html#a01feebeeec4eaf1793e3b1ac021bc94b',1,'cnet.h']]],
   ['cnet_5fquit_4',['CNet_quit',['../cnet_8h.html#ab9297bf7e174b10a4f68eb4121e6f744',1,'cnet.h']]],
-  ['cnet_5fserverstructure_5',['CNet_serverStructure',['../struct_c_net__server_structure.html',1,'']]],
+  ['cnet_5fserverstructure_5',['CNet_server_structure',['../struct_c_net__server_structure.html',1,'']]],
   ['cnet_5fsocket_6',['CNet_socket',['../cnet_8h.html#ae371c5587bd47c0a07f82b476c9f10af',1,'cnet.h']]],
   ['cnet_5fsocket_5faccept_5ferror_7',['CNET_SOCKET_ACCEPT_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552a5e0815685131f87fb69c36780dde17e2',1,'cnet.h']]],
   ['cnet_5fsocket_5fallocate_5ferror_8',['CNET_SOCKET_ALLOCATE_ERROR',['../cnet_8h.html#ad2ae8bb9aa386064d5cf746f9f722552ad9f2406356d10137084cca48b8cb952c',1,'cnet.h']]],
