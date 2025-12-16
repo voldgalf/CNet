@@ -43,7 +43,7 @@ int main(void) {
 
     printf("Received: %s\n", buffer);
 
-    if(!CNet_socketSend(myConnection, buffer)) {
+    if(!CNet_socketSend(myConnection, buffer, 512)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
     }
 

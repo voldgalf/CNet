@@ -52,14 +52,14 @@ bool CNet_socketShutdown(CNet_socket_instance *socket) {
     return false;
 }
 
-bool CNet_socketSend(CNet_socket_instance *socket, char *buffer) {
+bool CNet_socketSend(CNet_socket_instance *socket, char *buffer, int32_t bufferSize) {
 
     if (socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
         socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
         return false;
     }
 
-    if (send(socket->socket, buffer, (int) strlen(buffer), 0) == SOCKET_ERROR) {
+    if (send(socket->socket, buffer, bufferSize, 0) == SOCKET_ERROR) {
         socket->errorCode = CNET_SOCKET_WRITE_ERROR;
         return false;
     }
@@ -322,7 +322,7 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, CNet_server_structure r
 
     serv_addr.sin_addr.s_addr = INADDR_ANY;
 
-    serv_addr.sin_port = htons(atoi(port));
+    serv_addr.sin_port = htons(atoi(request.port));
 
     if (bind(serverSocket->socket, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
         serverSocket->errorCode = CNET_SOCKET_BIND_ERROR;
@@ -333,11 +333,11 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, CNet_server_structure r
 
 bool CNet_SocketSetTimeout(CNet_socket_instance *socket, int milliseconds) {
     if (setsockopt(socket->socket, SOL_SOCKET, SO_SNDTIMEO,
-        (const char*) milliseconds, sizeof(milliseconds)) == SOCKET_ERROR) {
+        (const char*) milliseconds, sizeof(milliseconds)) < 0) {
         return false;
         }
     if (setsockopt(socket->socket, SOL_SOCKET, SO_RCVTIMEO,
-        (const char*) milliseconds, sizeof(milliseconds)) == SOCKET_ERROR) {
+        (const char*) milliseconds, sizeof(milliseconds)) < 0) {
         return false;
         }
     return true;

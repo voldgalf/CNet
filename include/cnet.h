@@ -138,11 +138,12 @@ bool CNet_socketShutdown(CNet_socket_instance *socket);
 *
 * \param[in] socket an instance of `CNet_socket_instance`
 * \param[in] buffer a char pointer
+* \param[in] bufferSize size of buffer
 *
 * \retval true Bytes from `buffer` are written to `socket`
 * \retval false An error has occurred
 */
-bool CNet_socketSend(CNet_socket_instance *socket, char *buffer);
+bool CNet_socketSend(CNet_socket_instance *socket, char* buffer, int32_t bufferSize);
 
 /*!
 * \brief Close socket
