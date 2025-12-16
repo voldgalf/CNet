@@ -31,6 +31,7 @@ int main(void) {
     printf("Waiting for connection...\n");
 
     char buffer[512];
+
     if(!CNet_socketAccept(myServer, myConnection)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
     }
