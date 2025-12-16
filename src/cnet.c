@@ -196,6 +196,7 @@ bool CNet_SocketSetTimeout(CNet_socket_instance *socket, int milliseconds) {
 }
 
 #elif defined(__linux__)
+
 bool CNet_quit() {
     return true;
 }
@@ -389,10 +390,10 @@ const char *CNet_getError(enum CNET_ERROR_CODES errorCode) {
 bool CNet_socketDestroy(CNet_socket_instance **socket) {
     if (!socket) {
         return false;
-    } else {
-        free(*socket);
-        return true;
     }
+
+    free(*socket);
+    return true;
 }
 
 bool CNet_socketInit(CNet_socket_instance **socket, enum CNET_SOCKET_TYPES sockType) {

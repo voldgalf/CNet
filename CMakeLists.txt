@@ -12,7 +12,6 @@ if (WIN32)
     target_link_libraries(CNet PRIVATE ws2_32)
 endif ()
 
-
 add_library(CNetLib ${PROJECT_SOURCE_DIR}/src/cnet.c)
 
 target_include_directories(CNetLib PRIVATE include)
