@@ -39,19 +39,17 @@ bool CNet_init() {
 }
 
 bool CNet_socketShutdown(CNet_socket_instance *socket) {
-    if(socket->socket != - 1) {
+    if (socket->socket != -1) {
         shutdown(socket->socket, SD_BOTH);
         closesocket(socket->socket);
         socket->socket = -1;
         socket->socketType = CNET_SOCKET_UNINIT_TYPE;
         return true;
-
     }
     return false;
 }
 
 bool CNet_socketSend(CNet_socket_instance *socket, char *buffer, int32_t bufferSize) {
-
     if (socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
         socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
         return false;
@@ -62,11 +60,9 @@ bool CNet_socketSend(CNet_socket_instance *socket, char *buffer, int32_t bufferS
         return false;
     }
     return true;
-
 }
 
 bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer, int32_t bufferSize) {
-
     if (socket->socketType != CNET_SOCKET_CLIENT_TYPE && socket->socketType != CNET_SOCKET_SERVER_CONNECTION_TYPE) {
         socket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
         return false;
@@ -87,7 +83,6 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer, int32_t bufferS
 }
 
 bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_server_structure request) {
-
     if (clientSocket->socketType != CNET_SOCKET_CLIENT_TYPE) {
         clientSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
         return false;
@@ -102,7 +97,6 @@ bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_server_structur
     hints.ai_protocol = IPPROTO_TCP;
 
     if (getaddrinfo(request.addr, request.port, &hints, &result) != 0) {
-
         return false;
     }
 
@@ -125,8 +119,7 @@ bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_server_structur
     return true;
 }
 
-bool CNet_socketAccept(CNet_socket_instance *serverSocket,CNet_socket_instance *connectionSocket) {
-
+bool CNet_socketAccept(CNet_socket_instance *serverSocket, CNet_socket_instance *connectionSocket) {
     if (serverSocket->socketType != CNET_SOCKET_SERVER_TYPE) {
         serverSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
         return false;
@@ -148,7 +141,6 @@ bool CNet_socketAccept(CNet_socket_instance *serverSocket,CNet_socket_instance *
 }
 
 bool CNet_socketHost(CNet_socket_instance *serverSocket, CNet_server_structure request) {
-
     if (serverSocket->socketType != CNET_SOCKET_SERVER_TYPE) {
         serverSocket->errorCode = CNET_SOCKET_INCORRECT_TYPE_ERROR;
         return false;
@@ -183,13 +175,13 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, CNet_server_structure r
     return true;
 }
 
-bool CNet_SocketSetTimeout(CNet_socket_instance *socket, int milliseconds) {
+bool CNet_SocketSetTimeout(CNet_socket_instance *socket, int32_t milliseconds) {
     if (setsockopt(socket->socket, SOL_SOCKET, SO_SNDTIMEO,
-        (const char*) milliseconds, sizeof(milliseconds)) == SOCKET_ERROR) {
+                   (char *) milliseconds, sizeof(milliseconds)) == SOCKET_ERROR) {
         return false;
     }
     if (setsockopt(socket->socket, SOL_SOCKET, SO_RCVTIMEO,
-        (const char*) milliseconds, sizeof(milliseconds)) == SOCKET_ERROR) {
+                   (char *) milliseconds, sizeof(milliseconds)) == SOCKET_ERROR) {
         return false;
     }
     return true;
@@ -344,14 +336,14 @@ bool CNet_SocketSetTimeout(CNet_socket_instance *socket, int milliseconds) {
 
 #endif
 
-bool CNet_socketClose(CNet_socket_instance ** socket) {
+bool CNet_socketClose(CNet_socket_instance **socket) {
     CNet_socketShutdown(*socket);
     CNet_socketDestroy(socket);
     return true;
 }
 
-const char *CNet_getError(enum CNET_ERROR_CODES errorCode) {
-    const char *message = "";
+char *CNet_getError(enum CNET_ERROR_CODES errorCode) {
+    char *message = "";
     switch (errorCode) {
         case CNET_SOCKET_INIT_ERROR:
             message = "Unable to initialize socket";

@@ -1,27 +1,30 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "include/cnet.h"
 
 int main(void) {
-
     CNet_init();
 
-    CNet_socket_instance * myServer = NULL;
-    if(!CNet_socketInit(&myServer, CNET_SOCKET_SERVER_TYPE)) {
+    CNet_socket_instance *myServer = NULL;
+    if (!CNet_socketInit(&myServer, CNET_SOCKET_SERVER_TYPE)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
+        return -1;
     }
 
-    CNet_socket_instance * myConnection = NULL;
-    if(!CNet_socketInit(&myConnection, CNET_SOCKET_SERVER_CONNECTION_TYPE)) {
+    CNet_socket_instance *myConnection = NULL;
+    if (!CNet_socketInit(&myConnection, CNET_SOCKET_SERVER_CONNECTION_TYPE)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
+        return -1;
     }
 
     CNet_server_structure serverStructure;
     serverStructure.port = "1234";
     serverStructure.addr = NULL;
 
-    if(!CNet_socketHost(myServer, serverStructure)) {
+    if (!CNet_socketHost(myServer, serverStructure)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
+        return -1;
     }
 
     printf("*----------------------------------*\n");
@@ -30,22 +33,25 @@ int main(void) {
 
     printf("Waiting for connection...\n");
 
-    char buffer[512];
-
-    if(!CNet_socketAccept(myServer, myConnection)) {
+    if (!CNet_socketAccept(myServer, myConnection)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
+        return -1;
     }
 
     printf("*-- New Connection --*\n");
 
+    char *buffer = NULL;
+
     if (!CNet_socketRecv(myConnection, buffer, 512)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
+        return -1;
     }
 
     printf("Received: %s\n", buffer);
 
-    if(!CNet_socketSend(myConnection, buffer, 512)) {
+    if (!CNet_socketSend(myConnection, buffer, 512)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
+        return -1;
     }
 
     CNet_socketClose(&myServer);
@@ -59,7 +65,7 @@ int main(void) {
     }
 
     CNet_server_structure serverStructure;
-    serverStructure.addr = "127.0.0.1";
+    serverStructure.addr = "10.0.0.220";
     serverStructure.port = "1234";
     printf("Attempting to connect to server ... ");
 
@@ -73,7 +79,7 @@ int main(void) {
     char * message = "Hello C";
 
     printf("Attempting to send message ... ");
-    if (!CNet_socketSend(clientSocket, message)) {
+    if (!CNet_socketSend(clientSocket, message, (int32_t) strlen(message))) {
         printf("ERROR\n\t%s\n", CNet_getError(clientSocket->errorCode));
         return -1;
     }

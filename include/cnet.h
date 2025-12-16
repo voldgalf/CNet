@@ -70,7 +70,7 @@ const char * port;
 } CNet_server_structure;
 
 
-const char *CNet_getError(enum CNET_ERROR_CODES errorCode);
+char *CNet_getError(enum CNET_ERROR_CODES errorCode);
 
 /*!
 * \brief Destroys socket
@@ -221,7 +221,7 @@ bool CNet_socketHost(CNet_socket_instance *serverSocket, CNet_server_structure r
 * \retval true Server is now being hosted on `port` through `socket`
 * \rtval false An error has occurred
 */
-bool CNet_SocketSetTimeout(CNet_socket_instance *socket, int milliseconds);
+bool CNet_SocketSetTimeout(CNet_socket_instance *socket, int32_t milliseconds);
 #ifdef __cplusplus
 }
 #endif
