@@ -16,7 +16,11 @@ int main(void) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
     }
 
-    if(!CNet_socketHost(myServer, "1234")) {
+    CNet_server_structure serverStructure;
+    serverStructure.port = "1234";
+    serverStructure.addr = NULL;
+
+    if(!CNet_socketHost(myServer, serverStructure)) {
         printf("Error: %s\n", CNet_getError(myServer->errorCode));
     }
 

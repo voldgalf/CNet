@@ -67,7 +67,7 @@ enum CNET_ERROR_CODES errorCode;
 typedef struct {
 const char * addr;
 const char * port;
-} CNet_serverStructure;
+} CNet_server_structure;
 
 
 const char *CNet_getError(enum CNET_ERROR_CODES errorCode);
@@ -181,7 +181,7 @@ bool CNet_socketRecv(CNet_socket_instance *socket, char *buffer, int32_t bufferS
 * \retval true `socket` is now connected to server
 * \retval false An error has occurred
 */
-bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_serverStructure request);
+bool CNet_socketConnect(CNet_socket_instance *clientSocket, CNet_server_structure request);
 
 /*!
 * \brief Writes newly connected connection to socket
@@ -202,13 +202,25 @@ bool CNet_socketAccept(CNet_socket_instance *serverSocket, CNet_socket_instance 
 * Given a `CNet_socket_instance` instance and a port: hosts a server
 *
 * \param[in,out] serverSocket an instance of `CNet_socket_instance`
-* \param[in] port a char pointer
+* \param[in] request an instance of `CNet_serverStructure`
 *
 * \retval true Server is now being hosted on `port` through `socket`
 * \retval false An error has occurred
 */
-bool CNet_socketHost(CNet_socket_instance *serverSocket, const char *port);
+bool CNet_socketHost(CNet_socket_instance *serverSocket, CNet_server_structure request);
 
+/*!
+* \brief Set socket timeout
+*
+* Given a `CNet_socket_instance` instance updates it's socket time with `milliseconds`
+*
+* \param[in,out] socket an instance of `CNet_socket_instance`
+* \param[in] milliseconds int
+*
+* \retval true Server is now being hosted on `port` through `socket`
+* \rtval false An error has occurred
+*/
+bool CNet_SocketSetTimeout(CNet_socket_instance *socket, int milliseconds);
 #ifdef __cplusplus
 }
 #endif
